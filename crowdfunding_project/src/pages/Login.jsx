@@ -11,7 +11,7 @@ import * as Yup from 'yup'
   
   let handleLogin= (values)=>{
     setIsloading(true)
-axios.post('http://127.0.0.1:8000/api/login/',values)
+axios.post('http://127.0.0.1:8000/api/login',values)
 .then((response)=>{console.log(response);
   if(response.data.message ==='Login successful'){
     // localStorage.setItem('userToken' , response.data.token)

@@ -24,7 +24,7 @@ const Register =()=> {
   function handelRegister(formValues){
     setIsloading(true)
     console.log(formValues);
-    axios.post('http://127.0.0.1:8000/api/register/' ,formValues)
+    axios.post('http://127.0.0.1:8000/api/register' ,formValues)
       .then((res)=>{
         console.log(res);
         if (res.data.message === 'User Registered') {
