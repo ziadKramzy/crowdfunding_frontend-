@@ -1,4 +1,3 @@
-# crowdfunding_frontend
 # 📱 Crowdfunding Frontend
 
 **Crowdfunding Frontend** is the React-based frontend of a full-stack Crowdfunding App.  
