@@ -1,10 +1,12 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -24,13 +26,12 @@ export const Home = () => {
   if (loading)
     return (
       <div className="text-center mt-5">
-        <div class="text-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     );
+
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
 
   return (
@@ -47,15 +48,18 @@ export const Home = () => {
                   <strong>Target:</strong> ${c.target_amount}
                 </p>
                 <p className="card-text">
-                  <strong>Start:</strong>{" "}
-                  {new Date(c.start_date).toLocaleDateString()}
+                  <strong>Start:</strong> {new Date(c.start_date).toLocaleDateString()}
                   <br />
-                  <strong>End:</strong>{" "}
-                  {new Date(c.end_date).toLocaleDateString()}
+                  <strong>End:</strong> {new Date(c.end_date).toLocaleDateString()}
                 </p>
               </div>
               <div className="card-footer text-center">
-                <button className="btn btn-primary">View Details</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate(`/campaign-details/${c.id}`)}
+                >
+                  View Details
+                </button>
               </div>
             </div>
           </div>
