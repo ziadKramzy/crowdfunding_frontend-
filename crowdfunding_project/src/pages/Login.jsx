@@ -1,21 +1,24 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import  { useEffect, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import { UserContext } from '../UserContext'
+
 
  const Login =()=> {
   let navigate = useNavigate()
   let[loginerror , setLoginerror] = useState(null)
   const [isloading , setIsloading] = useState(null)
+  let {setUserLogin} = useContext(UserContext);
   
   let handleLogin= (values)=>{
     setIsloading(true)
 axios.post('http://127.0.0.1:8000/api/login',values)
 .then((response)=>{console.log(response);
   if(response.data.message ==='Login successful'){
-    // localStorage.setItem('userToken' , response.data.token)
-    // setUserLogin(response.data.token)
+        localStorage.setItem('userToken' , response?.data?.tokens?.access)
+      setUserLogin(response?.data?.tokens?.access)
   setIsloading(false)
   navigate('/')
 }

@@ -27,7 +27,8 @@ const Register =()=> {
     axios.post('http://127.0.0.1:8000/api/register' ,formValues)
       .then((res)=>{
         console.log(res);
-        if (res.data.message === 'User Registered') {
+        if (res?.data?.message === 'User Registered') {
+          localStorage.setItem('userToken' , res?.data?.tokens?.access)
           setIsloading(false)
           navigate('/login');
         }

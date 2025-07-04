@@ -5,6 +5,7 @@ import { CampaignDetails } from "../pages/CampaignDetails";
 import  Register  from "../pages/Register";
 import  Login  from "../pages/Login";
 import NotFoundPage from "../pages/NotFoundPage";
+import { CampaignForm } from "../pages/CampaignForm";
 
 
 
@@ -15,6 +16,7 @@ import NotFoundPage from "../pages/NotFoundPage";
         { index: true, element: <Home /> },
         { path: 'campaigns', element: <Home /> },
         { path: 'campaign-details/:id', element: <CampaignDetails /> },
+        { path: 'create-campaign', element: <CampaignForm /> },
         { path: 'register', element: <Register /> },
         { path: 'login', element: <Login /> },
       ],

@@ -21,6 +21,11 @@ export const Home = () => {
     };
 
     fetchCampaigns();
+        const newCampaign = localStorage.getItem('newCampaignAdded');
+    if (newCampaign === 'true') {
+      fetchCampaigns();
+      localStorage.removeItem('newCampaignAdded');
+    }
   }, []);
 
   if (loading)
