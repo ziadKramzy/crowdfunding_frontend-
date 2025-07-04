@@ -54,6 +54,7 @@ let handleCreate =  (formValues)=>{
 
   return (
     <>
+        <h2 className="text-dark  text-center mb-5">Add New Campaign</h2>
       <form onSubmit={formik.handleSubmit} >
                 <div className="form-floating mb-3">
                   <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title} type="text" name='title' className="form-control" id="floatingTitle" placeholder="ex.animal help" />
