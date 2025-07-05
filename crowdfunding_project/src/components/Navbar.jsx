@@ -4,6 +4,7 @@ import { UserContext } from '../UserContext';
 
 const Navbar = () => {
   let {userLogin , setUserLogin } = useContext(UserContext)
+    const userId = userLogin?.user?.id;
   return (
     <nav className="navbar navbar-expand-lg bg-info position-fixed top-0 start-0 end-0 fw-bold text-white z-3">
       <div className="container-fluid">
@@ -16,7 +17,10 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-      {userLogin !== null ? <>      <li className="nav-item mx-2">
+      {userLogin !== null ? <>  
+      
+      
+          <li className="nav-item mx-2">
               <NavLink className="nav-link text-white" to="/">Home</NavLink>
             </li>
             <li className="nav-item mx-2">
@@ -24,7 +28,12 @@ const Navbar = () => {
             </li>
              <li className="nav-item mx-2">
               <NavLink className="nav-link text-white" to="/create-campaign">Create Campaign</NavLink>
-            </li></> : null}
+            </li>
+             
+               <li className="nav-item mx-2">
+              <NavLink className="nav-link text-white" to={`/campaigns/${userId}`}>My Campaigns</NavLink>
+            </li>
+            </> : null}
           </ul>
 
           <ul className="navbar-nav ms-auto d-flex align-items-center">

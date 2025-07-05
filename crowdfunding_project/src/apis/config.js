@@ -53,6 +53,7 @@ axiosInstance.interceptors.response.use(
       } catch (refreshError) {
         localStorage.removeItem('userToken');
         localStorage.removeItem('refresh_token');
+        localStorage.removeItem('userId');
         window.location.replace = '/login'; 
         return Promise.reject(refreshError);
       }

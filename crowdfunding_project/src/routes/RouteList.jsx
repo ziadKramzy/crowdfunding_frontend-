@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import NotFoundPage from "../pages/NotFoundPage";
 import { CampaignForm } from "../pages/CampaignForm";
 import { CampaignEdit } from "../pages/CampaignEdit";
+import MyCampaign from "../pages/MyCampaign";
 
 const route = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const route = createBrowserRouter([
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
       { path: "campaign/edit/:id", element: <CampaignEdit /> },
+      {path: "campaigns/:id", element: <MyCampaign />},
     ],
   },
   { path: "*", element: <NotFoundPage /> },

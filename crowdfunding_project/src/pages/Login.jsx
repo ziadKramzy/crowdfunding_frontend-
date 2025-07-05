@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { UserContext } from "../UserContext";
+import axiosInstance from "../apis/config";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -13,15 +14,15 @@ const Login = () => {
 
   let handleLogin = (values) => {
     setIsloading(true);
-    axios
-      .post("http://127.0.0.1:8000/api/login", values)
+    axiosInstance
+      .post("login", values)
       .then((response) => {
         console.log(response);
         if (response.data.message === "Login successful") {
           localStorage.setItem("userToken", response?.data?.tokens?.access);
           localStorage.setItem("refresh_token", response?.data?.tokens?.refresh);
           localStorage.setItem("userId", response?.data?.user?.id);
-          setUserLogin(response?.data?.tokens?.access);
+          setUserLogin(response?.data);
           setIsloading(false);
           navigate("/");
         }
