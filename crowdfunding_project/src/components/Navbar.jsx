@@ -34,7 +34,7 @@ const Navbar = () => {
             <li className="nav-item mx-2">
               <NavLink className="nav-link text-white" to="/register">Register</NavLink>
             </li></>:<li className="nav-item mx-2">
-              <NavLink className="nav-link text-white" to="/login" onClick={()=>setUserLogin(null)}>Logout</NavLink>
+              <NavLink className="nav-link text-white" to="/login" onClick={()=>{setUserLogin(null); localStorage.removeItem('userId')}}>Logout</NavLink>
             </li>}
          
             <li className="nav-item d-flex gap-2 mx-2">
