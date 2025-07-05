@@ -1,84 +1,73 @@
-import axios from 'axios'
-import { useFormik } from 'formik'
-import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
+import axios from "axios";
+import { useFormik } from "formik";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { UserContext } from "../UserContext";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const [loginError, setLoginError] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [userToken, setUserToken] = useState(null) 
+  let navigate = useNavigate();
+  let [loginerror, setLoginerror] = useState(null);
+  const [isloading, setIsloading] = useState(null);
+  let { setUserLogin } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem('access_token')
-    if (token) {
-      setUserToken(token)
-    }
-  }, [])
-
-  const handleLogin = (values) => {
-    setIsLoading(true)
-    setLoginError(null)
-
+  let handleLogin = (values) => {
+    setIsloading(true);
     axios
-      .post('http://127.0.0.1:8000/api/login', values)
+      .post("http://127.0.0.1:8000/api/login", values)
       .then((response) => {
-        console.log(response)
-
-        if (response.data.message === 'Login successful') {
-          localStorage.setItem('access_token', response.data.access)
-          localStorage.setItem('refresh_token', response.data.refresh)
-
-          setUserToken(response.data.access)
-
-          setIsLoading(false)
-          navigate('/')
+        console.log(response);
+        if (response.data.message === "Login successful") {
+          localStorage.setItem("userToken", response?.data?.tokens?.access);
+          localStorage.setItem("refresh_token", response?.data?.tokens?.refresh);
+          localStorage.setItem("userId", response?.data?.user?.id);
+          setUserLogin(response?.data?.tokens?.access);
+          setIsloading(false);
+          navigate("/");
         }
       })
       .catch((error) => {
-        console.log(error)
-        setIsLoading(false)
-        setLoginError(error.response?.data?.detail || error.message)
-      })
-  }
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Please enter your email'),
+        console.log(error);
+        setIsloading(false);
+        setLoginerror(error.message);
+      });
+  };
+  let validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Please enter your email"),
     password: Yup.string()
       .matches(
         /^[A-Z][A-Za-z0-9@#$%^&*]{5,10}$/,
-        'Password must start with a capital letter, be 6–11 characters long, and can include @#$%^&*'
+        "Password must start with a capital letter, be 6–11 characters long, and can include @#$%^&*"
       )
-      .required('Password is required'),
-  })
-
-  const formik = useFormik({
+      .required("Password is required"),
+  });
+  let formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-    validationSchema,
+    validationSchema: validationSchema,
     onSubmit: handleLogin,
-  })
-
+  });
+  useEffect(() => {}, []);
   return (
     <>
-      {loginError && (
+      {loginerror ? (
         <div className="alert alert-danger" role="alert">
-          {loginError}
+          {loginerror}
         </div>
-      )}
-
+      ) : null}
       <div className="container d-flex justify-content-center mt-3 pt-5">
         <div
-          className="py-5 px-4 my-5 border-dark rounded-3 shadow-lg"
-          style={{ maxWidth: '700px', width: '100%' }}
+          className="py-5 px-4 my-5   border-dark rounded-3 shadow-lg"
+          style={{ maxWidth: "700px", width: "100%" }}
         >
-          <h2 className="text-info text-center">Login Now</h2>
+          <h2 className="text-info  text-center">Login Now</h2>
 
           <form className="w-100 px-5 py-5" onSubmit={formik.handleSubmit}>
-            <div className="form-floating mb-3">
+            <div className="form-floating mb-3 ">
               <input
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -91,12 +80,11 @@ const Login = () => {
               />
               <label htmlFor="floatingInput">Email address</label>
             </div>
-            {formik.errors.email && formik.touched.email && (
+            {formik.errors.email && formik.touched.email ? (
               <div className="alert alert-danger" role="alert">
                 {formik.errors.email}
               </div>
-            )}
-
+            ) : null}
             <div className="form-floating mb-4">
               <input
                 onChange={formik.handleChange}
@@ -110,29 +98,35 @@ const Login = () => {
               />
               <label htmlFor="floatingPassword">Password</label>
             </div>
-            {formik.errors.password && formik.touched.password && (
+            {formik.errors.password && formik.touched.password ? (
               <div className="alert alert-danger" role="alert">
                 {formik.errors.password}
               </div>
-            )}
+            ) : null}
 
             <div>
-              <button type="submit" className="btn btn-info btn-lg text-white">
-                {isLoading ? <i className="fas fa-spinner fa-spin"></i> : 'Login'}
+              <button type="submit" className="btn btn-info btn-lg text-white ">
+                {isloading ? (
+                  <i className="fas fa-spinner fa-spin"></i>
+                ) : (
+                  "Login"
+                )}{" "}
               </button>
             </div>
-
             <p className="mt-4 text-center me-1">
-              You don't have an account?{' '}
-              <Link className="nav-link d-inline fw-bold text-info" to="/register">
-                <span>Register</span>
+              You don't have account?{" "}
+              <Link
+                className="nav-link d-inline fw-bold text-info"
+                to="/register"
+              >
+                <span> Register</span>
               </Link>
             </p>
           </form>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
