@@ -47,9 +47,10 @@ export const CampaignEdit = () => {
         navigate(`/campaign-details/${id}`);
       })
       .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
         alert(`Failed to update campaign.\n${err.response.data.error}`);
+        console.log(err);
+
+        setIsLoading(false);
       });
   };
 
@@ -77,7 +78,7 @@ export const CampaignEdit = () => {
 
   return (
     <>
-      <h2 className="text-dark text-center mb-5">Edit Campaign</h2>
+      <h2 className="text-dark text-center mb-5 mt-5">Edit Campaign</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-floating mb-3">
           <input
@@ -175,6 +176,14 @@ export const CampaignEdit = () => {
           ) : (
             "Update Campaign"
           )}
+        </button>
+        <button
+          className="btn btn-secondary btn-lg w-100 text-white mt-2"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Cancel
         </button>
       </form>
     </>

@@ -8,6 +8,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -22,10 +23,10 @@ export const Home = () => {
     };
 
     fetchCampaigns();
-        const newCampaign = localStorage.getItem('newCampaignAdded');
-    if (newCampaign === 'true') {
+    const newCampaign = localStorage.getItem("newCampaignAdded");
+    if (newCampaign === "true") {
       fetchCampaigns();
-      localStorage.removeItem('newCampaignAdded');
+      localStorage.removeItem("newCampaignAdded");
     }
   }, []);
 
@@ -45,9 +46,7 @@ export const Home = () => {
       <h2 className="mb-4 text-center">All Campaigns</h2>
       <div className="row">
         {campaigns.length > 0 ? (
-          campaigns.map((campaign) => (
-            <Card key={campaign.id} {...campaign} />
-          ))
+          campaigns.map((campaign) => <Card key={campaign.id} {...campaign} showControls={campaign.owner == userId}/>)
         ) : (
           <div className="text-center mt-5">
             <p>there is no campaigns yet.</p>
