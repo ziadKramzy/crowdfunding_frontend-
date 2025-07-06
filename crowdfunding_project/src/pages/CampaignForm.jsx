@@ -8,7 +8,6 @@ import axiosInstance from '../apis/config'
 
 export const CampaignForm = () => {
   const [isloading , setIsLoading] = useState(false)
-  const {userLogin, setUserLogin } = useContext(UserContext)
   let navigate = useNavigate()
 
 let handleCreate =  (formValues)=>{

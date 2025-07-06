@@ -9,7 +9,6 @@ const MyCampaign = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   const userId =  userLogin?.user?.id;
   const userCampaigns = campaigns.filter(campaign => campaign.owner === userId);
 
@@ -23,12 +22,12 @@ const MyCampaign = () => {
       } finally {
         setLoading(false);
       }
-    };
+    } ;
 
     fetchCampaigns();
     
     const newCampaign = localStorage.getItem('newCampaignAdded');
-    if (newCampaign === 'true') {
+    if (newCampaign) {
       fetchCampaigns();
       localStorage.removeItem('newCampaignAdded');
     }
@@ -51,15 +50,30 @@ const MyCampaign = () => {
     <div className="container mt-4">
       <h2 className="mb-4 text-center">My Campaigns</h2>
       <div className="row justify-content-center">
-        {userCampaigns.length > 0 ? (
-          userCampaigns.map((campaign) => (
-            <Card key={campaign.id} {...campaign} />
-          ))
-        ) : (
-          <div className="text-center mt-5">
-            <p>You haven't created any campaigns yet.</p>
-          </div>
-        )}
+        {
+            userCampaigns.map((campaign) => {
+  const handleDelete = async () => {
+    try {
+      const response = await axiosInstance.delete(`projects/${campaign.id}/delete/`);
+      console.log(response);
+      setCampaigns(prev => prev.filter(c => c.id !== campaign.id));
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete campaign.");
+    }
+  };
+
+  return (
+    <Card
+      key={campaign.id}
+      {...campaign}
+      showDelete={true}
+      onDelete={handleDelete} 
+    />
+  );
+})
+
+        }
       </div>
     </div>
   );

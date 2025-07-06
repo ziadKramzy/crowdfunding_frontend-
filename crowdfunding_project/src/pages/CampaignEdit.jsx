@@ -7,7 +7,6 @@ import axiosInstance from "../apis/config";
 
 export const CampaignEdit = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { userLogin } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -20,7 +19,6 @@ export const CampaignEdit = () => {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
     axiosInstance
       .get(`projects/${id}/`)
       .then((res) => {
@@ -40,7 +38,6 @@ export const CampaignEdit = () => {
   }, [id]);
 
   const handleUpdate = (formValues) => {
-    const token = localStorage.getItem("userToken");
     setIsLoading(true);
     axiosInstance
       .put(`projects/${id}/update/`, formValues)
