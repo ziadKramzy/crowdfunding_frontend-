@@ -10,8 +10,6 @@ const Card = ({
   start_date,
   end_date,
   owner,
-  showDelete = false,
-  onDelete,
   showControls = false,
 }) => {
   const navigate = useNavigate();
@@ -59,16 +57,25 @@ const Card = ({
         </div>
 
         <div className="card-footer bg-white border-0">
-          {showControls && (
+        
+  <button
+              className="btn btn-primary w-100 mb-1"
+              onClick={() => navigate(`/campaign-details/${id}`)}
+            >
+              View
+            </button>
+          <div className="d-flex justify-content-center gap-2">
+          
+              {showControls && (
             <div className="d-flex justify-content-between mb-2">
               <button
                 className="btn btn-info text-white w-50 me-2"
-                onClick={() => navigate(`campaign/edit/${id}`)}
+                onClick={() => navigate(`/campaign/edit/${id}`)}
               >
                 Edit
               </button>
               <button
-                className="btn btn-danger w-50"
+                className="btn btn-danger"
                 onClick={() => {
                   handleDelete(id);
                 }}
@@ -78,19 +85,7 @@ const Card = ({
             </div>
           )}
 
-          <div className="d-flex justify-content-center gap-2">
-            <button
-              className="btn btn-primary w-100"
-              onClick={() => navigate(`/campaign-details/${id}`)}
-            >
-              View
-            </button>
-
-            {showDelete && typeof onDelete === "function" && (
-              <button className="btn btn-danger" onClick={() => onDelete(id)}>
-                Delete
-              </button>
-            )}
+           
           </div>
         </div>
       </div>

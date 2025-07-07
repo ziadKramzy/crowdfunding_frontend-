@@ -7,9 +7,7 @@ export const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
-
+  
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
@@ -47,7 +45,7 @@ export const Home = () => {
       <h2 className="mb-4 text-center">All Campaigns</h2>
       <div className="row">
         {campaigns.length > 0 ? (
-          campaigns.map((campaign) => <Card key={campaign.id} {...campaign} showControls={campaign.owner == userId}/>)
+          campaigns.map((campaign) => <Card key={campaign.id} {...campaign} />)
         ) : (
           <div className="text-center mt-5">
             <p>there is no campaigns yet.</p>
