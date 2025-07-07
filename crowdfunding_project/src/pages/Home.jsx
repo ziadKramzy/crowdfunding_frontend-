@@ -30,6 +30,7 @@ export const Home = () => {
     }
   }, []);
 
+
   if (loading)
     return (
       <div className="text-center mt-5">

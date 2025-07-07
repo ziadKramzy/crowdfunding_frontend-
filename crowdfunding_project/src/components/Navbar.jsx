@@ -1,10 +1,18 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 const Navbar = () => {
   let { userLogin, setUserLogin } = useContext(UserContext);
   const userId = userLogin?.user?.id;
+  const navigate = useNavigate()
+
+  function handleLogout(){
+        setUserLogin(null);
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userToken");
+        navigate('/login') }
+
   return (
     <nav className="navbar navbar-expand-lg bg-info position-fixed top-0 start-0 end-0 fw-bold text-white z-3">
       <div className="container-fluid">
@@ -79,12 +87,7 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-white"
                   to="/login"
-                  onClick={() => {
-                    setUserLogin(null);
-                    localStorage.removeItem("userId");
-                    localStorage.removeItem("userToken");
-                    window.location.href("/login");
-                  }}
+                  onClick={handleLogout}
                 >
                   Logout
                 </NavLink>
