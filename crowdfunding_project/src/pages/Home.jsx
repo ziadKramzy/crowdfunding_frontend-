@@ -42,8 +42,8 @@ export const Home = () => {
 
   return (
     <div className="mt-lg-5 ml-auto p-5">
-      <h2 className="mb-1 text-center">All Campaigns</h2>
-      <div className="d-flex flex-wrap gap-4 justify-content-center  "  >
+      <h2 className="mb-5 text-center">All Campaigns</h2>
+      <div className="d-flex flex-wrap gap-4 justify-content-center"  >
         {campaigns.length > 0 ? (
           campaigns.map((campaign) => 
           <div>

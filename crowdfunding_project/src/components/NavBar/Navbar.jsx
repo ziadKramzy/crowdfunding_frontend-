@@ -17,7 +17,7 @@ const Navbar = () => {
         <NavLink className="custom-navbar-brand" to="/">
           CrowdFunding
         </NavLink>
-        <div className="custom-navbar-links">
+        <div className="custom-navbar-center">
           <ul className="custom-navbar-nav">
             {userId !== null && (
               <>
@@ -43,6 +43,10 @@ const Navbar = () => {
                 </li>
               </>
             )}
+          </ul>
+        </div>
+        <div className="custom-navbar-right">
+          <ul className="custom-navbar-nav">
             {userId == null && (
               <>
                 <li>
@@ -68,12 +72,13 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
-          </ul>
-          <div className="custom-navbar-social">
+              <div className="custom-navbar-social">
             <i className="fab fa-facebook"></i>
             <i className="fab fa-instagram"></i>
             <i className="fab fa-twitter"></i>
           </div>
+          </ul>
+        
         </div>
       </div>
     </nav>

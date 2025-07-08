@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap');
 
 .custom-navbar {
   width: 100vw;
@@ -6,11 +6,12 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background: #232228;
-  box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.4);
+  background: #86B971;
+  box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.10);
   border-radius: 0 0 2.25rem 2.25rem;
-  font-family: "Nunito", sans-serif;
-  padding: 0.5em 0;
+  font-family: 'Fira Sans', sans-serif;
+  padding: 0.7em 0;
+  color: #1F1D42;
 }
 
 .custom-navbar-container {
@@ -23,15 +24,16 @@
 }
 
 .custom-navbar-brand {
-  color: #01c3a8;
+  color: #2d7f0b;
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
   letter-spacing: 1px;
   transition: color 0.2s;
+  transform: translateX(-6vw);
 }
 .custom-navbar-brand:hover {
-  color: #fff;
+  color: #1F1D42;
 }
 
 .custom-navbar-links {
@@ -50,18 +52,19 @@
 }
 
 .custom-navbar-link {
-  color: #fff;
+  color: #1F1D42;
   font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
   padding: 0.4em 1em;
   border-radius: 1.2em;
   transition: background 0.2s, color 0.2s;
+  background: transparent;
 }
 .custom-navbar-link:hover,
 .custom-navbar-link.active {
-  background: #01c3a8;
-  color: #232228;
+  background: #DEE8C2;
+  color: #2d7f0b;
 }
 
 .custom-navbar-social {
@@ -71,12 +74,20 @@
   font-size: 1.3rem;
 }
 .custom-navbar-social i {
-  color: #fff;
+  color: #2d7f0b;
   transition: color 0.2s;
   cursor: pointer;
+  background: #DEE8C2;
+  border-radius: 50%;
+  padding: 0.3em;
 }
 .custom-navbar-social i:hover {
-  color: #01c3a8;
+  background: #2d7f0b;
+  color: #DEE8C2;
+}
+
+.custom-navbar-right{
+  transform: translatex(4vw);
 }
 
 /* Responsive */

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
 import { Home } from "../pages/Home";
-import { CampaignDetails } from "../pages/CampaignDetails";
+import { CampaignDetails } from "../pages/CampaignDetails/CampaignDetails";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import NotFoundPage from "../pages/NotFoundPage";

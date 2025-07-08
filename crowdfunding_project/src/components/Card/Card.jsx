@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./card.css"; 
+import "./card.css";
 import axiosInstance from "../../apis/config";
 
 const Card = ({
@@ -36,51 +36,35 @@ const Card = ({
   const calculateDaysRemaining = (startDate, endDate) => {
     try {
       if (!startDate || !endDate) return "Invalid dates";
-      
       const start = new Date(startDate);
       const end = new Date(endDate);
       const today = new Date();
-      
-      // If campaign hasn't started yet, show days until start
       if (today < start) {
         const daysUntilStart = Math.ceil((start - today) / (1000 * 60 * 60 * 24));
         return `${daysUntilStart} days until start`;
       }
-      
-      // If campaign is ongoing, show days remaining
       if (today <= end) {
         const daysRemaining = Math.ceil((end - today) / (1000 * 60 * 60 * 24));
         return daysRemaining === 1 ? "1 day left" : `${daysRemaining} days left`;
       }
-      
-      // If campaign has ended
       return "Campaign ended";
     } catch {
       return "Invalid dates";
     }
   };
 
-
-
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this campaign? This action cannot be undone.")) {
       return;
     }
-
     setIsDeleting(true);
-    
     try {
       const response = await axiosInstance.delete(`projects/${id}/delete/`);
-      console.log("Campaign deleted successfully:", response);
-      
       navigate("/campaigns", {
         replace: true,
         state: { message: "Campaign deleted successfully" }
       });
-      
     } catch (error) {
-      console.error("Failed to delete campaign:", error);
-      
       if (error.response?.status === 404) {
         alert("Campaign not found. It may have already been deleted.");
       } else if (error.response?.status === 403) {
@@ -102,50 +86,34 @@ const Card = ({
   };
 
   return (
-    <>
-      <div className={`campaign-card green `}>
-        <div className="card-header">
-          <div className="date">
-            Start: &nbsp; {formatDate(start_date)}
-
-          </div>
-          <div className="date">
-           End:&nbsp; {formatDate(end_date)}
-
-          </div>
-          
+    <div className="card-hover">
+      <div className="card-hover__content">
+        <h3 className="card-hover__title">
+          {title && title.length > 20 ? `${title.substring(0, 20)}...` : title || "Untitled Campaign"}
+        </h3>
+        <p className="card-hover__text">
+          {truncateDescription(description, 70)}
+        </p>
+        <div style={{ margin: "1em 0", fontWeight: 600 }}>
+          Target: {formatCurrency(target_amount)}
         </div>
-
-        <div className="card-body">
-          <h3 className="card-title">
-            {title && title.length > 20 ? `${title.substring(0, 20)}...` : title || "Untitled Campaign"}
-          </h3>
-          <p className="card-description">
-            {truncateDescription(description, 50)}
-          </p>
-          <div className="progress-section">
-            <span className="progress-label">Target</span>
-            <div className="progress-bar"></div>
-            <span className="progress-text">{formatCurrency(target_amount)}</span>
-          </div>
+        <div style={{ fontSize: "0.9em", marginBottom: "0.5em" }}>
+          <span>Start: {formatDate(start_date)}</span>
+          <br />
+          <span>End: {formatDate(end_date)}</span>
         </div>
-
-        <div className="card-footer">
-          <button className="btn-countdown">
+        <div style={{ marginBottom: "1em" }}>
+          <button className="btn-countdown" style={{ background: "#2d7f0b", color: "#fff", border: "none", borderRadius: "4px", padding: "0.4em 1em" }}>
             {calculateDaysRemaining(start_date, end_date)}
           </button>
         </div>
-
-        <div className="action-buttons">
-          <button
-            className="action-btn btn-view"
-            onClick={handleView}
-          >
-            View
-          </button>
-          
+        <div className="action-buttons" style={{ display: "flex", gap: "0.5em", justifyContent: "center" }}>
+         
           {showControls && (
             <>
+             <button className="action-btn btn-view" onClick={handleView}>
+            View
+          </button>
               <button
                 className="action-btn btn-edit"
                 onClick={handleEdit}
@@ -170,8 +138,30 @@ const Card = ({
             </>
           )}
         </div>
+        {/* Only show "See More" when showControls is false */}
+        {!showControls && (
+          <a href="#" className="card-hover__link" tabIndex={-1}>
+            <span
+              className="view-btn"
+              onClick={handleView}
+              style={{ cursor: "pointer" }}
+            >
+              See More
+            </span>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        )}
       </div>
-    </>
+      <div className="card-hover__extra">
+    
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"
+        alt="Campaign"
+      />
+    </div>
   );
 };
 
