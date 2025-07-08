@@ -74,7 +74,7 @@ export const CampaignDetails = () => {
         <div className="campaignform-body">
           {campaign.image && (
             <img
-              src={campaign.image}
+              src={`https://res.cloudinary.com/ddtp8tqvv/${campaign.image}`}
               alt={campaign.title}
               style={{ width: "100%", maxHeight: "300px", objectFit: "cover", marginBottom: "1em" }}
             />
