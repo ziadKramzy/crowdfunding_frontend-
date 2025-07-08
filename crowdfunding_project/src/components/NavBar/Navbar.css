@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background: #86B971;
+  background: #123F76;
   box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.10);
   border-radius: 0 0 2.25rem 2.25rem;
   font-family: 'Fira Sans', sans-serif;
@@ -24,17 +24,15 @@
 }
 
 .custom-navbar-brand {
-  color: #2d7f0b;
-  font-size: 1.7rem;
+  color: white;
+  font-size: 2.2rem;
   font-weight: 800;
   text-decoration: none;
   letter-spacing: 1px;
   transition: color 0.2s;
   transform: translateX(-6vw);
 }
-.custom-navbar-brand:hover {
-  color: #1F1D42;
-}
+
 
 .custom-navbar-links {
   display: flex;
@@ -52,7 +50,7 @@
 }
 
 .custom-navbar-link {
-  color: #1F1D42;
+  color: white;
   font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
@@ -64,7 +62,7 @@
 .custom-navbar-link:hover,
 .custom-navbar-link.active {
   background: #DEE8C2;
-  color: #2d7f0b;
+  color: #0000B3;
 }
 
 .custom-navbar-social {

@@ -14,9 +14,9 @@ const Navbar = () => {
   return (
     <nav className="custom-navbar">
       <div className="custom-navbar-container">
-        <NavLink className="custom-navbar-brand" to="/">
+        <div className="custom-navbar-brand" >
           CrowdFunding
-        </NavLink>
+        </div>
         <div className="custom-navbar-center">
           <ul className="custom-navbar-nav">
             {userId !== null && (

@@ -31,7 +31,7 @@ export const Home = () => {
 
   if (loading)
     return (
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 py-5">
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -42,7 +42,7 @@ export const Home = () => {
 
   return (
     <div className="mt-lg-5 ml-auto p-5">
-      <h2 className="mb-5 text-center">All Campaigns</h2>
+      <h2 className="mb-5 text-center fs-1" style={{color:'#123F76'}}>All Campaigns</h2>
       <div className="d-flex flex-wrap gap-4 justify-content-center"  >
         {campaigns.length > 0 ? (
           campaigns.map((campaign) => 

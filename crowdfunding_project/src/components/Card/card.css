@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5 {
 .card-hover__content {
   width: 100%;
   text-align: center;
-  background-color: #86B971;
+  background-color: #123F76;
   padding: 0 60px 50px;
   position: absolute;
   bottom: 0;
@@ -73,6 +73,7 @@ h1, h2, h3, h4, h5 {
   will-change: bottom, background-color, transform, padding;
   z-index: 1;
   border-radius: 18px;
+  color:white
 }
 
 .card-hover__content::before,
@@ -197,6 +198,8 @@ h1, h2, h3, h4, h5 {
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
+
+
 }
 
 .btn-view {
