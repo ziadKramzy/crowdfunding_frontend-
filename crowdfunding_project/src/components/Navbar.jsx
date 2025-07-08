@@ -1,14 +1,11 @@
-import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { UserContext } from "../UserContext";
 
 const Navbar = () => {
-  let { userLogin, setUserLogin } = useContext(UserContext);
-  const userId = userLogin?.user?.id;
+  const userId = localStorage.getItem("userId")
   const navigate = useNavigate()
 
   function handleLogout(){
-        setUserLogin(null);
+        
         localStorage.removeItem("userId");
         localStorage.removeItem("userToken");
         navigate('/login') }
@@ -34,7 +31,7 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {localStorage.getItem("userId") !== null ? (
+            { userId !== null ? (
               <>
                 <li className="nav-item mx-2">
                   <NavLink className="nav-link text-white" to="/">
@@ -58,7 +55,7 @@ const Navbar = () => {
                 <li className="nav-item mx-2">
                   <NavLink
                     className="nav-link text-white"
-                    to={`/campaigns/${userId}`}
+                    to={`/campaigns`}
                   >
                     My Campaigns
                   </NavLink>
@@ -68,7 +65,7 @@ const Navbar = () => {
           </ul>
 
           <ul className="navbar-nav ms-auto d-flex align-items-center">
-            {localStorage.getItem("userId") == null ? (
+            {userId == null ? (
               <>
                 {" "}
                 <li className="nav-item mx-2">

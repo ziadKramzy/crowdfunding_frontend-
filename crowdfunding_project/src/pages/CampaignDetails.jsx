@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { UserContext } from "../UserContext";
+import { useEffect, useState } from "react";
 import axiosInstance from "../apis/config";
 
 export const CampaignDetails = () => {
@@ -10,7 +9,6 @@ export const CampaignDetails = () => {
   const [campaign, setCampaign] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const { setUserLogin, userId } = useContext(UserContext);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("userToken");
 

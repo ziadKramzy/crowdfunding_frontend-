@@ -1,16 +1,13 @@
-import axios from "axios";
 import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { UserContext } from "../UserContext";
 import axiosInstance from "../apis/config";
 
 const Login = () => {
   let navigate = useNavigate();
   let [loginerror, setLoginerror] = useState(null);
   const [isloading, setIsloading] = useState(null);
-  let { setUserLogin } = useContext(UserContext);
 
   let handleLogin = (values) => {
     setIsloading(true);
@@ -22,7 +19,6 @@ const Login = () => {
           localStorage.setItem("userToken", response?.data?.tokens?.access);
           localStorage.setItem("refresh_token", response?.data?.tokens?.refresh);
           localStorage.setItem("userId", response?.data?.user?.id);
-          setUserLogin(response?.data);
           setIsloading(false);
           navigate("/");
         }
