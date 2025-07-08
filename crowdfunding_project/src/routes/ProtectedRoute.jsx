@@ -1,14 +1,14 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 export const ProtectedRoute = (props) => {
-if (localStorage.getItem('userToken') !== null){
-  return props.children
-}
-else {
-  return  <Navigate to={'/login'}/>
-}
-
-
-
+  const location = useLocation();
+  if (localStorage.getItem('userToken') !== null) {
+    return props.children;
+  } else {
+    if (location.pathname === '/campaigns' || location.pathname === '/') {
+      return props.children;
+    }
+    return <Navigate to={'/login'} />;
+  }
 }

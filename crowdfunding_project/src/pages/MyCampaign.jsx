@@ -44,7 +44,7 @@ const MyCampaign = () => {
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
 
   return (
-    <div className="mt-lg-5 ml-auto p-5">
+    <div className="mt-lg-4 ml-auto p-5">
       <h2 className="mb-4 text-center">My Campaigns</h2>
       <div className="d-flex flex-wrap gap-4 justify-content-center">
         {userCampaigns.map((campaign) => {

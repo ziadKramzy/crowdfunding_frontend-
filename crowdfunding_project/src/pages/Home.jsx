@@ -41,7 +41,7 @@ export const Home = () => {
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
 
   return (
-    <div className="mt-lg-5 ml-auto p-5">
+    <div className="mt-lg-4 ml-auto p-5">
       <h2 className="mb-5 text-center">All Campaigns</h2>
       <div className="d-flex flex-wrap gap-4 justify-content-center"  >
         {campaigns.length > 0 ? (

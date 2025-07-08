@@ -19,9 +19,7 @@ const Navbar = () => {
         </NavLink>
         <div className="custom-navbar-center">
           <ul className="custom-navbar-nav">
-            {userId !== null && (
-              <>
-                <li>
+            <li>
                   <NavLink className="custom-navbar-link" to="/">
                     Home
                   </NavLink>
@@ -31,6 +29,9 @@ const Navbar = () => {
                     Campaigns
                   </NavLink>
                 </li>
+            {userId !== null && (
+              <>
+                
                 <li>
                   <NavLink className="custom-navbar-link" to="/create-campaign">
                     Create Campaign

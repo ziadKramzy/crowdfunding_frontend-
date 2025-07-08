@@ -15,6 +15,11 @@ const Card = ({
 }) => {
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
+  const [amountRaised, setAmountRaised] = useState(0);
+  const [donateAmount, setDonateAmount] = useState("");
+  const [donateError, setDonateError] = useState("");
+  const userId = localStorage.getItem("userId");
 
   const truncateDescription = (text, maxLength = 100) =>
     text && text.length > maxLength ? `${text.substring(0, maxLength)}...` : text || "";
@@ -32,6 +37,15 @@ const Card = ({
       return "N/A";
     }
   };
+
+  
+  const now = new Date();
+  const ended = end_date ? new Date(end_date) < now : false;
+
+ 
+  if (ended) {
+    return null;
+  }
 
   const calculateDaysRemaining = (startDate, endDate) => {
     try {
@@ -59,7 +73,7 @@ const Card = ({
     }
     setIsDeleting(true);
     try {
-      const response = await axiosInstance.delete(`projects/${id}/delete/`);
+      await axiosInstance.delete(`projects/${id}/delete/`);
       navigate("/campaigns", {
         replace: true,
         state: { message: "Campaign deleted successfully" }
@@ -85,6 +99,19 @@ const Card = ({
     navigate(`/campaign/edit/${id}`);
   };
 
+  const handleDonate = (e) => {
+    e.preventDefault();
+    const amount = parseFloat(donateAmount);
+    if (isNaN(amount) || amount <= 0) {
+      setDonateError("Please enter a valid amount.");
+      return;
+    }
+    setAmountRaised((prev) => prev + amount);
+    setShowDonate(false);
+    setDonateAmount("");
+    setDonateError("");
+  };
+
   return (
     <div className="card-hover">
       <div className="card-hover__content">
@@ -97,6 +124,9 @@ const Card = ({
         <div style={{ margin: "1em 0", fontWeight: 600 }}>
           Target: {formatCurrency(target_amount)}
         </div>
+        <div style={{ margin: "0.5em 0", fontWeight: 600 }}>
+          Amount Raised: {formatCurrency(amountRaised)}
+        </div>
         <div style={{ fontSize: "0.9em", marginBottom: "0.5em" }}>
           <span>Start: {formatDate(start_date)}</span>
           <br />
@@ -108,12 +138,11 @@ const Card = ({
           </button>
         </div>
         <div className="action-buttons" style={{ display: "flex", gap: "0.5em", justifyContent: "center" }}>
-         
           {showControls && (
             <>
-             <button className="action-btn btn-view" onClick={handleView}>
-            View
-          </button>
+              <button className="action-btn btn-view" onClick={handleView}>
+                View
+              </button>
               <button
                 className="action-btn btn-edit"
                 onClick={handleEdit}
@@ -138,29 +167,72 @@ const Card = ({
             </>
           )}
         </div>
-        {/* Only show "See More" when showControls is false */}
+        
         {!showControls && (
-          <a href="#" className="card-hover__link" tabIndex={-1}>
-            <span
-              className="view-btn"
-              onClick={handleView}
-              style={{ cursor: "pointer" }}
-            >
-              See More
-            </span>
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
+          <div style={{ display: "flex", justifyContent: "center", gap: "1em", marginTop: "1em" }}>
+            <a className="card-hover__link" tabIndex={-1} style={{ opacity: 1, position: "static", transform: "none", padding: 0 }}>
+              <span
+                className="view-btn"
+                onClick={handleView}
+                style={{ cursor: "pointer", color: "#b6ffb3" }}
+              >
+                See More
+              </span>
+              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ marginLeft: 4 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+            {userId !== null && (
+              <button
+                className="action-btn btn-donate"
+                style={{ background: "#1b7a3a", color: "#fff", borderRadius: "1.2em", fontWeight: 600, fontSize: "1rem" }}
+                onClick={() => setShowDonate(true)}
+              >
+                Donate
+              </button>
+            )}
+          </div>
         )}
       </div>
-      <div className="card-hover__extra">
-    
-      </div>
+      <div className="card-hover__extra"></div>
       <img
         src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"
         alt="Campaign"
       />
+
+      {showDonate && (
+        <div className="donate-modal-overlay">
+          <div className="donate-modal">
+            <div className="donate-modal-header">
+              <h3>Donate to {title}</h3>
+              <span className="donate-modal-close" onClick={() => setShowDonate(false)}>&times;</span>
+            </div>
+            <form onSubmit={handleDonate}>
+              <div className="donate-modal-body">
+                <label style={{ fontWeight: 600, marginBottom: 8, display: "block" }}>Amount</label>
+                <input
+                  type="number"
+                  min="1"
+                  className="donate-input"
+                  value={donateAmount}
+                  onChange={e => setDonateAmount(e.target.value)}
+                  placeholder="Enter amount"
+                  required
+                />
+                {donateError && <div className="donate-error">{donateError}</div>}
+              </div>
+              <div className="donate-modal-actions">
+                <button type="button" className="btn-cancel" onClick={() => setShowDonate(false)}>
+                  Cancel
+                </button>
+                <button type="submit" className="btn-countdown" style={{ width: "auto", marginLeft: "1em" }}>
+                  Donate
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

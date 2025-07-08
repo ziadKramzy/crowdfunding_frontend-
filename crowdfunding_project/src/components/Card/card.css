@@ -4,9 +4,8 @@ html {
   box-sizing: border-box;
   font-size: 100%;
 }
-
-html, body {
-  height: 100%;
+body{
+  padding: 4vw;
 }
 
 *, *:before, *:after {
@@ -31,7 +30,7 @@ h1, h2, h3, h4, h5 {
   height: 500px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 32px -10px rgba(0,0,0,0.08);
+  box-shadow: 0 0 32px -10px rgba(53, 45, 45, 0.08);
   border-radius: 18px;
   background: transparent;
 }
@@ -189,7 +188,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .action-btn {
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border: none;
   border-radius: 1.5rem;
   color: #fff;
@@ -253,4 +252,65 @@ h1, h2, h3, h4, h5 {
 .view-btn {
   cursor: pointer;
   user-select: none;
+}
+
+/* Donate Modal Styles */
+.donate-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.donate-modal {
+  background: #20521a;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 2em 2em 1.5em 2em;
+  min-width: 320px;
+  max-width: 90vw;
+  position: relative;
+}
+.donate-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.donate-modal-close {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #b6ffb3;
+  margin-left: 1em;
+}
+.donate-modal-body {
+  margin-bottom: 1em;
+}
+.donate-input {
+  width: 100%;
+  padding: 0.7em 1em;
+  border-radius: 1.2em;
+  border: none;
+  font-size: 1.1rem;
+  margin-bottom: 0.5em;
+  background: #fff;
+  color: #20521a;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
+}
+.donate-error {
+  color: #ffb3b3;
+  background: #a63d2a;
+  border-radius: 1em;
+  padding: 0.4em 1em;
+  margin-bottom: 0.5em;
+  font-size: 0.95em;
+}
+.donate-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
 }
