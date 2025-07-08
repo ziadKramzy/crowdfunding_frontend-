@@ -1,0 +1,126 @@
+/* Background for the whole page */
+.campaignform-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card container, matches card.css */
+.campaignform-card {
+  min-width: 22rem;
+  max-width: 45rem;
+  width: 100%;
+  border-radius: 2.25rem;
+  box-shadow: 0.063em 0.75em 1.563em rgba(0, 0, 0, 0.78);
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #232228;
+  border: 0.155rem solid #01c3a8;
+}
+
+/* Header */
+.campaignform-header {
+  padding: 1.5em 1em 0.5em 1em;
+  text-align: center;
+}
+.campaignform-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Body with white background */
+.campaignform-body {
+  background: #fff;
+  border-radius: 2rem;
+  padding: 2em 1.5em 1.5em 1.5em;
+  margin: 1em;
+  box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.04);
+}
+
+/* Form fields */
+.campaignform-form .form-control {
+  background: #f7f7f7;
+  color: #232228;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.7em 1em;
+  margin-bottom: 0.5em;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+.campaignform-form .form-control:focus {
+  background: #eaeaea;
+}
+
+/* Error messages */
+.campaignform-form .alert-danger {
+  background: #a63d2a;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  margin-bottom: 0.5em;
+  font-size: 0.95em;
+}
+
+/* Buttons */
+.btn-countdown-camp {
+  background: #01c3a8;
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.7em 1em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+.btn-countdown-camp:hover {
+  background: #019e86;
+}
+.btn-cancel {
+  background: #232228;
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.7em 1em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.7rem;
+  transition: background 0.2s;
+}
+.btn-cancel:hover {
+  background: #444;
+}
+
+/* Spinner for loading */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #01c3a8;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}

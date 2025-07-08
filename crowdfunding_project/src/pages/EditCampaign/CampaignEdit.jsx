@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../apis/config";
+import axiosInstance from "../../apis/config";
 
 export const CampaignEdit = () => {
   const [isLoading, setIsLoading] = useState(false);

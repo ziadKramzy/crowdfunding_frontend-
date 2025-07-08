@@ -2,11 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
 import { Home } from "../pages/Home";
 import { CampaignDetails } from "../pages/CampaignDetails";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
+import Register from "../pages/Register/Register";
+import Login from "../pages/Login/Login";
 import NotFoundPage from "../pages/NotFoundPage";
-import { CampaignForm } from "../pages/CampaignForm";
-import { CampaignEdit } from "../pages/CampaignEdit";
+import { CampaignForm } from "../pages/CreateCampaign/CampaignForm";
+import { CampaignEdit } from "../pages/EditCampaign/CampaignEdit";
 import MyCampaign from "../pages/MyCampaign";
 import { ProtectedRoute } from "./ProtectedRoute";
 

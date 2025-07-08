@@ -1,6 +1,6 @@
 import {useEffect, useState } from "react"; // Add useContext import
 import axiosInstance from "../apis/config";
-import Card from "../components/Card";
+import Card from "../components/Card/Card";
 
 const MyCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -44,9 +44,9 @@ const MyCampaign = () => {
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
 
   return (
-    <div className="container mt-4">
+    <div className="mt-lg-5 ml-auto p-5">
       <h2 className="mb-4 text-center">My Campaigns</h2>
-      <div className="row justify-content-center">
+      <div className="d-flex flex-wrap gap-4 justify-content-center">
         {userCampaigns.map((campaign) => {
 
           return (

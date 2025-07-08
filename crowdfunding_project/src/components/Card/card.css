@@ -1,0 +1,289 @@
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+
+        .campaign-card {
+          
+          position: relative;
+          min-width: 20rem;
+          max-width: 20rem;
+          min-height: 20rem;
+          width: 100%;
+          display: grid;
+          place-content: center;
+          place-items: center;
+          text-align: center;
+          box-shadow: 0.063em 0.75em 1.563em rgba(0, 0, 0, 0.78);
+          border-radius: 2.25rem;
+          font-family: "Nunito", sans-serif;
+          margin: 1rem;
+        }
+
+        .campaign-card::before {
+          position: absolute;
+          content: "";
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 2.25rem;
+          z-index: -1;
+          border: 0.155rem solid transparent;
+          -webkit-mask-composite: destination-out;
+          mask-composite: exclude;
+        }
+
+        .card-header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 0.8em 0.5em ;
+        }
+
+        .date {
+            font-weight: bold;
+          color: #ddd;
+          font-size: 0.9rem;
+          text-align: center;
+        }
+
+        .menu-icon {
+          color: #fff;
+          width: 2.5rem;
+          cursor: pointer;
+        }
+
+        .card-body {
+          position: absolute;
+          width: 100%;
+          display: block;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 0.7em 1.25em 0.5em 1.5em;
+        }
+
+        .card-title {
+          color: #fff;
+          font-size: 1.375rem;
+          margin-top: 0.625em;
+          margin-bottom: 0.188em;
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+
+        .card-description {
+          color: #ddd;
+          font-size: 1rem;
+          letter-spacing: 0.031rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .progress-section {
+          margin: 0.938rem  
+        }
+
+        .progress-label {
+          color: #fff;
+          text-align: left;
+          font-weight: 600;
+          width: 100%;
+          display: block;
+          margin-bottom: 0.313rem;
+        }
+
+        .progress-bar {
+          position: relative;
+          width: 100%;
+          background: #363636;
+          height: 0.313rem;
+          display: block;
+          border-radius: 3.125rem;
+          margin-bottom: 0.313rem;
+        }
+
+        .progress-bar::after {
+          position: absolute;
+          content: "";
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 100%;
+          width: 75%;
+          display: block;
+          border-radius: 3.125rem;
+        }
+
+        .progress-text {
+          margin-top: 0.313rem;
+          text-align: right;
+          display: block;
+          color: #fff;
+          font-size: 0.9rem;
+          
+        }
+
+        .card-footer {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          border-top: 0.063rem solid #292929;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.7em 1.25em 0.5em 1.5em;
+          background: #151419;
+          border-bottom-left-radius: 2.25rem;
+          border-bottom-right-radius: 2.25rem;
+        }
+
+      
+
+
+        .btn-countdown {
+          background: #222127;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 2em;
+          padding: 0.625rem 1.5rem;
+          border: none;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          width: 100%;
+        }
+
+        .action-buttons {
+          position: absolute;
+          bottom: -3rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 0.5rem;
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+
+        .campaign-card:hover .action-buttons {
+          opacity: 1;
+          bottom: -2.5rem;
+        }
+
+        .action-btn {
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 1.5rem;
+          color: #fff;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .btn-view {
+          background: #1890ff;
+        }
+
+        .btn-edit {
+          background: #01c3a8;
+        }
+
+        .btn-delete {
+          background: #a63d2a;
+        }
+
+        .action-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        /* Color variants */
+        .green {
+          background: radial-gradient(ellipse at right top, #107667ed 0%, #151419 47%, #151419 100%);
+        }
+
+        .green::before {
+          background: linear-gradient(45deg, #232228, #232228, #232228, #232228, #01c3a8) border-box;
+        }
+
+        .green .progress-bar::after {
+          background: #01c3a8;
+        }
+
+        .green .btn-countdown:hover {
+          background: #01c3a8;
+        }
+
+        .blue {
+          background: radial-gradient(ellipse at right top, #00458f8f 0%, #151419 45%, #151419 100%);
+        }
+
+        .blue::before {
+          background: linear-gradient(45deg, #232228, #232228, #232228, #232228, #1890ff) border-box;
+        }
+
+        .blue .progress-bar::after {
+          background: #1890ff;
+        }
+
+        .blue .btn-countdown:hover {
+          background: #1890ff;
+        }
+
+        .orange {
+          background: radial-gradient(ellipse at right top, #ffb74194 0%, #151419 47%, #151419 100%);
+        }
+
+        .orange::before {
+          background: linear-gradient(45deg, #232228, #232228, #232228, #232228, #ffb741) border-box;
+        }
+
+        .orange .progress-bar::after {
+          background: #ffb741;
+        }
+
+        .orange .btn-countdown:hover {
+          background: #ffb741;
+        }
+
+        .red {
+          background: radial-gradient(ellipse at right top, #a63d2a82 0%, #151419 47%, #151419 100%);
+        }
+
+        .red::before {
+          background: linear-gradient(45deg, #232228, #232228, #232228, #232228, #a63d2a) border-box;
+        }
+
+        .red .progress-bar::after {
+          background: #a63d2a;
+        }
+
+        .red .btn-countdown:hover {
+          background: #a63d2a;
+        }
+
+        .spinner {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border: 2px solid #ffffff;
+          border-radius: 50%;
+          border-top-color: transparent;
+          animation: spin 1s ease-in-out infinite;
+          margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      

@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+
+.custom-navbar {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: #232228;
+  box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.4);
+  border-radius: 0 0 2.25rem 2.25rem;
+  font-family: "Nunito", sans-serif;
+  padding: 0.5em 0;
+}
+
+.custom-navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2em;
+}
+
+.custom-navbar-brand {
+  color: #01c3a8;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.custom-navbar-brand:hover {
+  color: #fff;
+}
+
+.custom-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.custom-navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-navbar-link {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.4em 1em;
+  border-radius: 1.2em;
+  transition: background 0.2s, color 0.2s;
+}
+.custom-navbar-link:hover,
+.custom-navbar-link.active {
+  background: #01c3a8;
+  color: #232228;
+}
+
+.custom-navbar-social {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 1.3rem;
+}
+.custom-navbar-social i {
+  color: #fff;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.custom-navbar-social i:hover {
+  color: #01c3a8;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .custom-navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1em;
+  }
+  .custom-navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+    width: 100%;
+  }
+  .custom-navbar-nav {
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+  }
+}
