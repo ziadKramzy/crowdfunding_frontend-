@@ -6,22 +6,29 @@ import axiosInstance from "../../apis/config";
 import "./CampaignForm.css";
 export const CampaignForm = () => {
   const [isloading, setIsLoading] = useState(false);
+  const [image, setImage] = useState(null);
   let navigate = useNavigate();
   let handleCreate = (formValues) => {
-    const token = localStorage.getItem("userToken");
-
     setIsLoading(true);
+    const formData = new FormData();
+    Object.entries(formValues).forEach(([key, value]) =>
+      formData.append(key, value)
+    );
+    if (image) formData.append("image", image);
+
     axiosInstance
-      .post("projects/create/", formValues)
+      .post("projects/create/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
       .then((res) => {
-        console.log(res);
         setIsLoading(false);
+        console.log(image);
+        console.log("Backend response:", res.data.Campaign.image);
         localStorage.setItem("newCampaignAdded", "true");
         navigate("/");
       })
       .catch((res) => {
         alert(`Failed to create campaign.\n${res.response.data.error}`);
-        console.log(res);
         setIsLoading(false);
       });
   };
@@ -144,6 +151,16 @@ export const CampaignForm = () => {
             {formik.errors.end_date && formik.touched.end_date && (
               <div className="alert alert-danger">{formik.errors.end_date}</div>
             )}
+
+            <div className="mb-4">
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                className="form-control"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
 
             <button
               type="submit"

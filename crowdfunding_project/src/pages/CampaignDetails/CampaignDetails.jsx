@@ -72,6 +72,13 @@ export const CampaignDetails = () => {
           <h2 className="campaignform-title">{campaign.title}</h2>
         </div>
         <div className="campaignform-body">
+          {campaign.image && (
+            <img
+              src={campaign.image}
+              alt={campaign.title}
+              style={{ width: "100%", maxHeight: "300px", objectFit: "cover", marginBottom: "1em" }}
+            />
+          )}
           <p>
             <strong>Description:</strong> {campaign.description}
           </p>

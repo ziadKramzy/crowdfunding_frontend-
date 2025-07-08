@@ -18,6 +18,8 @@ export const CampaignEdit = () => {
     end_date: "",
   });
 
+  const [image, setImage] = useState(null);
+
   useEffect(() => {
     axiosInstance
       .get(`projects/${id}/`)
@@ -39,8 +41,14 @@ export const CampaignEdit = () => {
 
   const handleUpdate = (formValues) => {
     setIsLoading(true);
+    const formData = new FormData();
+    Object.entries(formValues).forEach(([key, value]) => formData.append(key, value));
+    if (image) formData.append("image", image);
+
     axiosInstance
-      .put(`projects/${id}/update/`, formValues)
+      .put(`projects/${id}/update/`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
       .then((res) => {
         setIsLoading(false);
         navigate(`/campaign-details/${id}`);
@@ -145,6 +153,14 @@ export const CampaignEdit = () => {
             {formik.errors.end_date && formik.touched.end_date && (
               <div className="alert-danger">{formik.errors.end_date}</div>
             )}
+
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              className="form-control"
+              onChange={e => setImage(e.target.files[0])}
+            />
 
             <button
               type="submit"

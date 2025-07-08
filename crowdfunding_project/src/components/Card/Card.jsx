@@ -12,13 +12,17 @@ const Card = ({
   end_date,
   owner,
   showControls = false,
+  amount_raised,
+  image // <-- use image prop from backend
 }) => {
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
-  const [amountRaised, setAmountRaised] = useState(0);
+  const [amountRaised, setAmountRaised] = useState(amount_raised);
+  const [targetAmount, setTargetAmount] = useState(target_amount);
   const [donateAmount, setDonateAmount] = useState("");
   const [donateError, setDonateError] = useState("");
+  const [donateLoading, setDonateLoading] = useState(false);
   const userId = localStorage.getItem("userId");
 
   const truncateDescription = (text, maxLength = 100) =>
@@ -38,11 +42,9 @@ const Card = ({
     }
   };
 
-  
   const now = new Date();
   const ended = end_date ? new Date(end_date) < now : false;
 
- 
   if (ended) {
     return null;
   }
@@ -99,18 +101,31 @@ const Card = ({
     navigate(`/campaign/edit/${id}`);
   };
 
-  const handleDonate = (e) => {
+  const handleDonate = async (e) => {
     e.preventDefault();
     const amount = parseFloat(donateAmount);
     if (isNaN(amount) || amount <= 0) {
       setDonateError("Please enter a valid amount.");
       return;
     }
-    setAmountRaised((prev) => prev + amount);
-    setShowDonate(false);
-    setDonateAmount("");
+    setDonateLoading(true);
     setDonateError("");
+    try {
+      const response = await axiosInstance.post(`projects/${id}/donate/`, { amount });
+      setAmountRaised(response.data.campaign.amount_raised);
+      setTargetAmount(response.data.campaign.target_amount);
+      setShowDonate(false);
+      setDonateAmount("");
+    } catch (error) {
+      setDonateError(
+        error.response?.data?.error || "Failed to donate. Please try again."
+      );
+    } finally {
+      setDonateLoading(false);
+    }
   };
+
+  console.log("image prop:", image);
 
   return (
     <div className="card-hover">
@@ -122,7 +137,7 @@ const Card = ({
           {truncateDescription(description, 70)}
         </p>
         <div style={{ margin: "1em 0", fontWeight: 600 }}>
-          Target: {formatCurrency(target_amount)}
+          Target: {formatCurrency(targetAmount)}
         </div>
         <div style={{ margin: "0.5em 0", fontWeight: 600 }}>
           Amount Raised: {formatCurrency(amountRaised)}
@@ -133,7 +148,7 @@ const Card = ({
           <span>End: {formatDate(end_date)}</span>
         </div>
         <div style={{ marginBottom: "1em" }}>
-          <button className="btn-countdown" style={{ background: "#2d7f0b", color: "#fff", border: "none", borderRadius: "4px", padding: "0.4em 1em" }}>
+          <button className="btn-countdown" style={{ background: "#EADEB4", color: "#000", border: "none", borderRadius: "10px", padding: "0.4em 1em" }}>
             {calculateDaysRemaining(start_date, end_date)}
           </button>
         </div>
@@ -196,8 +211,15 @@ const Card = ({
       </div>
       <div className="card-hover__extra"></div>
       <img
-        src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"
-        alt="Campaign"
+        src={
+          image
+            ? image.startsWith("http")
+              ? image
+              : `https://res.cloudinary.com/ddtp8tqvv/${image}`
+            : "https://dummyimage.com/400x200/cccccc/000000&text=No+Image"
+        }
+        alt={title || "Campaign"}
+        style={{ width: "100%", height: "50%", objectFit: "cover" }}
       />
 
       {showDonate && (
@@ -218,15 +240,16 @@ const Card = ({
                   onChange={e => setDonateAmount(e.target.value)}
                   placeholder="Enter amount"
                   required
+                  disabled={donateLoading}
                 />
                 {donateError && <div className="donate-error">{donateError}</div>}
               </div>
               <div className="donate-modal-actions">
-                <button type="button" className="btn-cancel" onClick={() => setShowDonate(false)}>
+                <button type="button" className="btn-cancel" onClick={() => setShowDonate(false)} disabled={donateLoading}>
                   Cancel
                 </button>
-                <button type="submit" className="btn-countdown" style={{ width: "auto", marginTop: "1em" }}>
-                  Donate
+                <button type="submit" className="btn-countdown" style={{ width: "auto", marginTop: "1em" }} disabled={donateLoading}>
+                  {donateLoading ? "Donating..." : "Donate"}
                 </button>
               </div>
             </form>
