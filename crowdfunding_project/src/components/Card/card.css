@@ -234,6 +234,11 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 0.5em;
 }
 
+.btn-countdown:hover {
+  background-color: #215c08;
+  transition: all 0.3s ease;
+}
+
 .spinner {
   display: inline-block;
   width: 12px;
@@ -313,4 +318,5 @@ h1, h2, h3, h4, h5 {
   display: flex;
   justify-content: flex-end;
   gap: 1em;
+  align-items: center;
 }

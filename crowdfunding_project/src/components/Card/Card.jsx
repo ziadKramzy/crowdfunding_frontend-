@@ -225,7 +225,7 @@ const Card = ({
                 <button type="button" className="btn-cancel" onClick={() => setShowDonate(false)}>
                   Cancel
                 </button>
-                <button type="submit" className="btn-countdown" style={{ width: "auto", marginLeft: "1em" }}>
+                <button type="submit" className="btn-countdown" style={{ width: "auto", marginTop: "1em" }}>
                   Donate
                 </button>
               </div>
