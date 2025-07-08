@@ -22,7 +22,7 @@ const route = createBrowserRouter([
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
       { path: "campaign/edit/:id", element:<ProtectedRoute><CampaignEdit /></ProtectedRoute>  },
-      {path: "campaigns/", element: <ProtectedRoute><MyCampaign /></ProtectedRoute>},
+      {path: "mycampaigns/", element: <ProtectedRoute><MyCampaign /></ProtectedRoute>},
     ],
   },
   { path: "*", element: <NotFoundPage /> },

@@ -37,7 +37,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="custom-navbar-link" to="/campaigns">
+                  <NavLink className="custom-navbar-link" to="/mycampaigns">
                     My Campaigns
                   </NavLink>
                 </li>

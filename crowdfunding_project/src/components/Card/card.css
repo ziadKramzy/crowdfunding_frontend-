@@ -3,9 +3,9 @@
         .campaign-card {
           
           position: relative;
-          min-width: 20rem;
+          min-width: 30rem;
           max-width: 20rem;
-          min-height: 20rem;
+          min-height: 23rem;
           width: 100%;
           display: grid;
           place-content: center;
@@ -176,7 +176,7 @@
         }
 
         .action-btn {
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 4rem;
           border: none;
           border-radius: 1.5rem;
           color: #fff;
