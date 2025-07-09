@@ -4,6 +4,7 @@ import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
 import "./Home.css";
 export const Home = () => {
+  let navigate = useNavigate();
   const [campaigns, setCampaigns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const campaignsPerPage = 3;
@@ -56,7 +57,7 @@ export const Home = () => {
           <h1 className="home-hero-title">Empower Ideas, Fund Dreams</h1>
           <div className="explore">
             <p className="home-hero-desc">Discover inspiring campaigns or start your own journey today.</p>
-            <button className="home-hero-btn">Explore</button>
+            <button className="home-hero-btn" onClick={() => navigate("/create-campaign")}>Start Now</button>
           </div>
         </div>
         <img className="picture" src="https://images.unsplash.com/photo-1451153378752-16ef2b36ad05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80" alt="hero background" style={{display:'none'}} />
