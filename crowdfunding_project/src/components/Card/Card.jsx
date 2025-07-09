@@ -13,7 +13,7 @@ const Card = ({
   owner,
   showControls = false,
   amount_raised,
-  image // <-- use image prop from backend
+  image 
 }) => {
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);

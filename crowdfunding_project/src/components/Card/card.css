@@ -41,7 +41,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .card-hover:hover .card-hover__content {
-  background-color: #DEE8C2;
+  background-color: #1890ff;
+  color: #fff;
   bottom: 100%;
   transform: translateY(100%);
   padding: 50px 60px;
@@ -120,7 +121,7 @@ h1, h2, h3, h4, h5 {
   flex-wrap: wrap;
   align-items: center;
   text-decoration: none;
-  color: #2d7f0b;
+  color: #1890ff;
   opacity: 0;
   padding: 10px;
   transition: all 0.18s;
@@ -130,10 +131,8 @@ h1, h2, h3, h4, h5 {
   
 }
 
-.card-hover__link:hover svg {
-  transform: translateX(4px);
-  cursor: pointer;
-
+.card-hover__link:hover {
+  color: #1565c0;
 }
 
 .card-hover__link svg {
@@ -152,11 +151,11 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   font-size: 1.5rem;
   text-align: center;
-  background-color: #86b971;
+  background-color: #123F76;
   padding: 80px;
   bottom: 0;
   z-index: 0;
-  color: #dee8c2;
+  color: #fff;
   transform: translateY(100%);
   will-change: transform;
   transition: transform 0.35s;
@@ -206,40 +205,25 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn-edit {
-  background: #01c3a8;
+  background: #1a73e8;
 }
 
 .btn-delete {
-  background: #a63d2a;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.action-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  background: #205080;
 }
 
 .btn-countdown {
-  background: #2d7f0b;
+  background: #123F76;
   color: #fff;
-  font-weight: bold;
-  border-radius: 2em;
-  padding: 0.625rem 1.5rem;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  margin-bottom: 0.5em;
 }
 
+.action-btn:hover,
 .btn-countdown:hover {
-  background-color: #215c08;
-  transition: all 0.3s ease;
+  background: #1565c0;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(18, 63, 118, 0.18);
+  transform: translateY(-2px) scale(1.03);
+  transition: all 0.3s cubic-bezier(.1,.72,.4,.97);
 }
 
 .spinner {
