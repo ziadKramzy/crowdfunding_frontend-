@@ -4,9 +4,6 @@ html {
   box-sizing: border-box;
   font-size: 100%;
 }
-body{
-  padding: 4vw;
-}
 
 *, *:before, *:after {
   box-sizing: inherit;
