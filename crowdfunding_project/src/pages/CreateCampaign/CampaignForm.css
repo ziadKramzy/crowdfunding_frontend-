@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap');
+
+/* Background for the whole page */
+.campaignform-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e3f0ff;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/* Card container, matches card.css and navbar */
+.campaignform-card {
+  min-width: 22rem;
+  max-width: 45rem;
+  width: 100%;
+  border-radius: 2.25rem;
+  box-shadow: 0 0 32px -10px rgba(25,118,210,0.12);
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #123F76;
+  color: #fff;
+  border: none;
+}
+
+/* Blue-ish Themed Buttons */
+.campaignform-card button,
+.campaignform-card input[type="submit"],
+.campaignform-card .btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.65em 2em;
+  font-size: 1.1rem;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.13);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.campaignform-card button:hover,
+.campaignform-card input[type="submit"]:hover,
+.campaignform-card .btn:hover {
+  background: #1253a2;
+  color: #fff;
+}
+.campaignform-card button:focus,
+.campaignform-card input[type="submit"]:focus,
+.campaignform-card .btn:focus {
+  outline: 2px solid #1976d2;
+  background: #1565c0;
+}
+.campaignform-card button:disabled,
+.campaignform-card input[type="submit"]:disabled,
+.campaignform-card .btn:disabled {
+  background: #bcd5f7;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Header */
+.campaignform-header {
+  padding: 2em 1em 0.5em 1em;
+  text-align: center;
+  background: transparent;
+}
+.campaignform-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+}
+
+/* Body with soft background */
+.campaignform-body {
+  background: #eaece2;
+  color: #123F76;
+  font-size: 1.3rem;
+  border-radius: 2rem;
+  padding: 2em 1.5em 1.5em 1.5em;
+  margin: 1em;
+  box-shadow: 0 0.5em 1.5em rgba(0,0,0,0.04);
+}
+
+/* Form fields */
+.campaignform-form .form-control {
+  background: #f7f7f7;
+  color: #1F1D42;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.7em 1em;
+  margin-bottom: 0.8em;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 1rem;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+.campaignform-form .form-control:focus {
+  background: #eaeaea;
+}
+
+/* Error messages */
+.campaignform-form .alert-danger {
+  background: #a63d2a;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  margin-bottom: 0.5em;
+  font-size: 0.95em;
+}
+
+/* Buttons */
+.btn-countdown-camp {
+  background: #2d7f0b;
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 1em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(45,127,11,0.08);
+}
+.btn-countdown-camp:hover {
+  background: #189040;
+}
+.btn-cancel {
+  background: #DEE8C2;
+  color: #2d7f0b;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 1em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.7rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(45,127,11,0.04);
+}
+.btn-cancel:hover {
+  background: #2d7f0b;
+  color: #DEE8C2;
+}
+
+/* Spinner for loading */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #2d7f0b;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}

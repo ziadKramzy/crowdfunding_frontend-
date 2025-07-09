@@ -1,63 +1,70 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useFormik} from 'formik'
-import axios from 'axios'
+import { useFormik } from 'formik'
 import * as Yup from 'yup'
-
-const Register =()=> {
+import axiosInstance from '../../apis/config'
+import './Register.css' 
+const Register = () => {
   let navigate = useNavigate()
 
-  let validationShema = Yup.object({
-    first_name: Yup.string().min(3,'min length 3').max(10,'max length 10').required('Please enter your frist name'),
-    last_name: Yup.string().min(3,'min length 3').max(10,'max length 10').required('Please enter your last name'),
+  let validationSchema = Yup.object({
+    first_name: Yup.string().min(3, 'min length 3').max(10, 'max length 10').required('Please enter your first name'),
+    last_name: Yup.string().min(3, 'min length 3').max(10, 'max length 10').required('Please enter your last name'),
     email: Yup.string().email('Invalid email').required('Please enter your email'),
-    phone_number:Yup.string().matches(/^01[0125][0-9]{8}$/ , 'phone number must be egyptian number'),
-    password:Yup.string()
+    phone_number: Yup.string().matches(/^01[0125][0-9]{8}$/, 'phone number must be egyptian number').required('Phone number is required'),
+    password: Yup.string()
       .matches(/^[A-Z][A-Za-z0-9@#$%^&*]{5,10}$/, 'Password must start with a capital letter, be 6–11 characters long, and can include @#$%^&*')
       .required('Password is required'),
-    confirm_password:Yup.string().oneOf([Yup.ref('password')] , 'not match password')
+    confirm_password: Yup.string().oneOf([Yup.ref('password')], 'Passwords do not match').required('Please confirm your password')
   })
 
-  const [apiError , setApiError] = useState(null)
-  const [isloading , setIsloading] = useState(false)
+  const [apiError, setApiError] = useState(null)
+  const [isloading, setIsloading] = useState(false)
 
-  function handelRegister(formValues){
+  function handelRegister(formValues) {
     setIsloading(true)
+    setApiError(null)
+    
     console.log(formValues);
-    axios.post('http://127.0.0.1:8000/api/register/' ,formValues)
-      .then((res)=>{
+    axiosInstance.post('register', formValues)
+      .then((res) => {
         console.log(res);
-        if (res.data.message === 'User Registered') {
+        if (res?.data?.message === 'User Registered') {
           setIsloading(false)
           navigate('/login');
         }
       })
-      .catch((res)=>{
+      .catch((error) => {
         setIsloading(false)
-        setApiError(res.data.message)
+        if (error.response?.data?.message) {
+          setApiError(error.response.data.message)
+        } else if (error.response?.data?.error) {
+          setApiError(error.response.data.error)
+        } else {
+          setApiError('Registration failed. Please try again.')
+        }
+        console.log(error);
       })
   }
 
   let formik = useFormik({
-    initialValues:{
-      first_name:"",
-      last_name:"",
-      email:"",
-      password:"",
-      confirm_password:"",
-      phone_number:''
+    initialValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+      phone_number: ''
     },
-    validationSchema:validationShema,
+    validationSchema: validationSchema,
     onSubmit: handelRegister
   })
 
-  useEffect(()=>{},[])
-
   return (
     <>
-      {apiError?<div className="alert alert-danger" role="alert">{apiError}</div>:null}
+      {apiError ? <div className="alert alert-danger" role="alert">{apiError}</div> : null}
 
-      <div className="container d-flex justify-content-center align-items-center mt-2 pt-5" style={{ minHeight: '100vh', paddingTop: '120px' ,zIndex: 1}}>
+      <div className="container d-flex justify-content-center align-items-center mt-2 pt-5" style={{ minHeight: '100vh', paddingTop: '120px', zIndex: 1 }}>
         <div className="w-100" style={{ maxWidth: '700px' }}>
           <div className="card shadow-lg ">
             <div className="card-body p-5">
@@ -65,7 +72,7 @@ const Register =()=> {
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-floating mb-3">
                   <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.first_name} type="text" name='first_name' className="form-control" id="floatingName" placeholder="ex.shimaa" />
-                  <label htmlFor="floatingName">Frist Name</label>
+                  <label htmlFor="floatingName">First Name</label>
                 </div>
                 {formik.errors.first_name && formik.touched.first_name && <div className="alert alert-danger">{formik.errors.first_name}</div>}
 

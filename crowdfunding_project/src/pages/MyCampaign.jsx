@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState } from "react"; // Add useContext import
 import axiosInstance from "../apis/config";
 import Card from "../components/Card/Card";
 
-export const Home = () => {
+const MyCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const userId = localStorage.getItem("userId");
+  const userCampaigns = campaigns.filter(
+    (campaign) => campaign.owner == userId
+  );
+
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
@@ -21,17 +24,17 @@ export const Home = () => {
     };
 
     fetchCampaigns();
+
     const newCampaign = localStorage.getItem("newCampaignAdded");
-    if (newCampaign === "true") {
+    if (newCampaign) {
       fetchCampaigns();
       localStorage.removeItem("newCampaignAdded");
     }
   }, []);
 
-
   if (loading)
     return (
-      <div className="text-center mt-5 py-5">
+      <div className="text-center mt-5">
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -41,21 +44,22 @@ export const Home = () => {
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
 
   return (
-    <div className="mt-lg-5 ml-auto p-5">
-      <h2 className="mb-5 text-center fs-1" style={{color:'#123F76'}}>All Campaigns</h2>
-      <div className="d-flex flex-wrap gap-4 justify-content-center"  >
-        {campaigns.length > 0 ? (
-          campaigns.map((campaign) => 
-         
-            <Card key={campaign.id} {...campaign} />
-           
-          )
-        ) : (
-          <div className="text-center mt-5">
-            <p>there is no campaigns yet.</p>
-          </div>
-        )}
+    <div className="mt-lg-4 ml-auto p-5">
+      <h2 className="mb-4 text-center">My Campaigns</h2>
+      <div className="d-flex flex-wrap gap-4 justify-content-center">
+        {userCampaigns.map((campaign) => {
+
+          return (
+            <Card
+              key={campaign.id}
+              {...campaign}
+              showControls={true}
+            />
+          );
+        })}
       </div>
     </div>
   );
 };
+
+export default MyCampaign;

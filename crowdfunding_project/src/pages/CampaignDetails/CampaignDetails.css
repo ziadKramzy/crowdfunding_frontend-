@@ -1,0 +1,89 @@
+.campaign-details-container {
+  max-width: 700px;
+  margin: 2.5em auto;
+  background: #123F76;
+  color: #fff;
+  border-radius: 2.25rem;
+  box-shadow: 0 0 32px -10px rgba(25,118,210,0.12);
+  padding: 2.5em 2em 2em 2em;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.campaign-details-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.campaign-details-fields {
+  margin-bottom: 2em;
+}
+
+.campaign-details-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2em;
+  font-size: 1.3rem;
+}
+.campaign-details-label {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #bcd5f7;
+}
+.campaign-details-value {
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #fff;
+  margin-left: 1em;
+  word-break: break-word;
+}
+
+.campaign-details-description {
+  font-size: 1.15em;
+  line-height: 1.7;
+  margin-bottom: 2em;
+  color: #e3f0ff;
+  background: #1976d2;
+  border-radius: 1.1em;
+  padding: 1.2em 1em;
+}
+
+.campaign-details-actions {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.campaign-details-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.7em 2.2em;
+  font-size: 1.15rem;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.13);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.campaign-details-btn:hover {
+  background: #1253a2;
+  color: #fff;
+}
+
+.campaign-details-btn:focus {
+  outline: 2px solid #1976d2;
+  background: #1565c0;
+}
+
+.campaign-details-btn:disabled {
+  background: #bcd5f7;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
