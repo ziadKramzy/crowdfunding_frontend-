@@ -9,20 +9,63 @@ import { CampaignForm } from "../pages/CreateCampaign/CampaignForm";
 import { CampaignEdit } from "../pages/EditCampaign/CampaignEdit";
 import MyCampaign from "../pages/MyCampaign";
 import { ProtectedRoute } from "./ProtectedRoute";
+import Card from "../components/Card/Card";
 
 const route = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element:<ProtectedRoute><Home /></ProtectedRoute>},
-      { path: "campaigns", element: <ProtectedRoute><Home /></ProtectedRoute> },
-      { path: "campaign-details/:id", element:<ProtectedRoute><CampaignDetails /></ProtectedRoute>  },
-      { path: "create-campaign", element: <ProtectedRoute><CampaignForm /></ProtectedRoute> },
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "campaigns",
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "campaign-details/:id",
+        element: (
+          <ProtectedRoute>
+            <CampaignDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "create-campaign",
+        element: (
+          <ProtectedRoute>
+            <CampaignForm />
+          </ProtectedRoute>
+        ),
+      },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
-      { path: "campaign/edit/:id", element:<ProtectedRoute><CampaignEdit /></ProtectedRoute>  },
-      {path: "mycampaigns/", element: <ProtectedRoute><MyCampaign /></ProtectedRoute>},
+      {
+        path: "campaign/edit/:id",
+        element: (
+          <ProtectedRoute>
+            <CampaignEdit />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "mycampaigns/",
+        element: (
+          <ProtectedRoute>
+            <MyCampaign />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   { path: "*", element: <NotFoundPage /> },

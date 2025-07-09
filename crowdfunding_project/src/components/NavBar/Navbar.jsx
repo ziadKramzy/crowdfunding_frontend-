@@ -1,9 +1,17 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { useRef } from "react";
 
 const Navbar = () => {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  const searchInputRef = useRef(null);
+
+  const handlesearch = (e) => {
+    e.preventDefault();
+    const searchQuery = searchInputRef.current.value;
+    navigate(`/search?q=${searchQuery}`);
+  };
 
   function handleLogout() {
     localStorage.removeItem("userId");
@@ -14,24 +22,21 @@ const Navbar = () => {
   return (
     <nav className="custom-navbar">
       <div className="custom-navbar-container">
-        <div className="custom-navbar-brand" >
-          CrowdFunding
-        </div>
+        <div className="custom-navbar-brand">CrowdFunding</div>
         <div className="custom-navbar-center">
           <ul className="custom-navbar-nav">
             <li>
-                  <NavLink className="custom-navbar-link" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/campaigns">
-                    Campaigns
-                  </NavLink>
-                </li>
+              <NavLink className="custom-navbar-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="custom-navbar-link" to="/campaigns">
+                Campaigns
+              </NavLink>
+            </li>
             {userId !== null && (
               <>
-                
                 <li>
                   <NavLink className="custom-navbar-link" to="/create-campaign">
                     Create Campaign
@@ -73,13 +78,25 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
-              <div className="custom-navbar-social">
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-twitter"></i>
-          </div>
+            {/* 🔍 Search Input */}
+            <li>
+              <form onSubmit={handlesearch}>
+                <input
+                  ref={searchInputRef}
+                  className="custom-navbar-search"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  autoComplete="on"
+                />
+              </form>
+            </li>
+            <div className="custom-navbar-social">
+              <i className="fab fa-facebook"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-twitter"></i>
+            </div>
           </ul>
-        
         </div>
       </div>
     </nav>
