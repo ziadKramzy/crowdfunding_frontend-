@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../apis/config";
 import "../CreateCampaign/CampaignForm.css";
+import "./CampaignDetails.css";
 
 export const CampaignDetails = () => {
   const { id } = useParams();

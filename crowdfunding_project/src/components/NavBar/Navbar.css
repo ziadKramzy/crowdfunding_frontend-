@@ -61,7 +61,7 @@
 }
 .custom-navbar-link:hover,
 .custom-navbar-link.active {
-  background: #DEE8C2;
+  background: #fcfff2;
   color: #0000B3;
 }
 
@@ -72,16 +72,16 @@
   font-size: 1.3rem;
 }
 .custom-navbar-social i {
-  color: #2d7f0b;
-  transition: color 0.2s;
+  color: #1976d2;
+  transition: color 0.2s, background 0.2s;
   cursor: pointer;
-  background: #DEE8C2;
+  background: #e3f0ff;
   border-radius: 50%;
   padding: 0.3em;
 }
 .custom-navbar-social i:hover {
-  background: #2d7f0b;
-  color: #DEE8C2;
+  background: #1253a2;
+  color: #fff;
 }
 
 .custom-navbar-right{

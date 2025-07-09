@@ -86,10 +86,7 @@ const Card = ({
     setIsDeleting(true);
     try {
       await axiosInstance.delete(`projects/${id}/delete/`);
-      navigate("/campaigns", {
-        replace: true,
-        state: { message: "Campaign deleted successfully" },
-      });
+     window.location.replace('/mycampaigns')
     } catch (error) {
       if (error.response?.status === 404) {
         alert("Campaign not found. It may have already been deleted.");
@@ -203,27 +200,17 @@ const Card = ({
 
         {!showControls && (
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "1em",
-              marginTop: "1em",
-            }}
+         
           >
             <a
               className="card-hover__link"
               tabIndex={-1}
-              style={{
-                opacity: 1,
-                position: "static",
-                transform: "none",
-                padding: 0,
-              }}
+              
             >
               <span
                 className="view-btn"
                 onClick={handleView}
-                style={{ cursor: "pointer", color: "#b6ffb3" }}
+                
               >
                 See More
               </span>
@@ -244,13 +231,6 @@ const Card = ({
             {userId !== null && (
               <button
                 className="action-btn btn-donate"
-                style={{
-                  background: "#1b7a3a",
-                  color: "#fff",
-                  borderRadius: "1.2em",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                }}
                 onClick={() => setShowDonate(true)}
               >
                 Donate

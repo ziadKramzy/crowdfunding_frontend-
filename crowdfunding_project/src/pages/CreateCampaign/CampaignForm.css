@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F0F8E1;
+  background: #e3f0ff;
   font-family: 'Fira Sans', sans-serif;
 }
 
@@ -16,15 +16,54 @@
   max-width: 45rem;
   width: 100%;
   border-radius: 2.25rem;
-  box-shadow: 0 0 32px -10px rgba(0,0,0,0.08);
+  box-shadow: 0 0 32px -10px rgba(25,118,210,0.12);
   margin: 2rem 0;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background: #86B971;
+  background: #123F76;
+  color: #fff;
   border: none;
+}
+
+/* Blue-ish Themed Buttons */
+.campaignform-card button,
+.campaignform-card input[type="submit"],
+.campaignform-card .btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.65em 2em;
+  font-size: 1.1rem;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.13);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.campaignform-card button:hover,
+.campaignform-card input[type="submit"]:hover,
+.campaignform-card .btn:hover {
+  background: #1253a2;
+  color: #fff;
+}
+.campaignform-card button:focus,
+.campaignform-card input[type="submit"]:focus,
+.campaignform-card .btn:focus {
+  outline: 2px solid #1976d2;
+  background: #1565c0;
+}
+.campaignform-card button:disabled,
+.campaignform-card input[type="submit"]:disabled,
+.campaignform-card .btn:disabled {
+  background: #bcd5f7;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Header */
@@ -43,7 +82,9 @@
 
 /* Body with soft background */
 .campaignform-body {
-  background: #DEE8C2;
+  background: #eaece2;
+  color: #123F76;
+  font-size: 1.3rem;
   border-radius: 2rem;
   padding: 2em 1.5em 1.5em 1.5em;
   margin: 1em;
