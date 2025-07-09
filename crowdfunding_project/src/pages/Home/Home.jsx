@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
 import "./Home.css";
+import image1 from '../../assets/Images/pexels-singkham.jpg'
+import image2 from '../../assets/Images/istockphoto-1643578236-1024x1024.jpg'
+
 export const Home = () => {
   let navigate = useNavigate();
   const [campaigns, setCampaigns] = useState([]);
@@ -40,11 +43,11 @@ export const Home = () => {
 
   if (loading)
     return (
-      <div className="text-center mt-5 py-5">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+     <div className="d-flex justify-content-center align-items-center vh-100">
+  <div className="spinner-border text-info" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+</div>
     );
 
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
@@ -68,7 +71,7 @@ export const Home = () => {
         <h2 className="home-info-title">Fundraising on OurPlatform is easy,<br/> powerful, and trusted</h2>
         <div className="home-info-content">
           <div className="home-info-image">
-            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Fundraising steps illustration" />
+            <img src={image2} alt="Fundraising steps illustration" />
           </div>
           <div className="home-info-steps">
             <div className="home-info-step">
