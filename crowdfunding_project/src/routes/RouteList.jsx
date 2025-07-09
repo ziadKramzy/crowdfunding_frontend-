@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
-import { Home } from "../pages/Home";
+import { Home } from "../pages/Home/Home";
 import { CampaignDetails } from "../pages/CampaignDetails/CampaignDetails";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
@@ -9,7 +9,7 @@ import { CampaignForm } from "../pages/CreateCampaign/CampaignForm";
 import { CampaignEdit } from "../pages/EditCampaign/CampaignEdit";
 import MyCampaign from "../pages/MyCampaign";
 import { ProtectedRoute } from "./ProtectedRoute";
-import Card from "../components/Card/Card";
+import { Allcampaign } from "../pages/Allcampaign";
 
 const route = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const route = createBrowserRouter([
         path: "campaigns",
         element: (
           <ProtectedRoute>
-            <Home />
+            <Allcampaign />
           </ProtectedRoute>
         ),
       },
@@ -48,8 +48,6 @@ const route = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      { path: "register", element: <Register /> },
-      { path: "login", element: <Login /> },
       {
         path: "campaign/edit/:id",
         element: (
@@ -66,8 +64,11 @@ const route = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      { path: "register", element: <Register /> },
+      { path: "login", element: <Login /> },
     ],
   },
   { path: "*", element: <NotFoundPage /> },
 ]);
+
 export default route;

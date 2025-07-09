@@ -42,9 +42,12 @@ export const CampaignDetails = () => {
     return (
       <div className="campaignform-bg">
         <div className="campaignform-card">
-          <div className="campaignform-header">
-            <h2 className="campaignform-title">Loading...</h2>
-          </div>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+  <div className="spinner-border text-info" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+</div>
+
           <div className="campaignform-body" style={{ textAlign: "center" }}>
             <span className="spinner"></span>
           </div>

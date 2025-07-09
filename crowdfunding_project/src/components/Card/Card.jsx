@@ -25,31 +25,12 @@ const Card = ({
   const [donateLoading, setDonateLoading] = useState(false);
   const userId = localStorage.getItem("userId");
 
-  const truncateDescription = (text, maxLength = 100) =>
-    text && text.length > maxLength
-      ? `${text.substring(0, maxLength)}...`
-      : text || "";
 
   const formatCurrency = (amount) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
     }).format(amount || 0);
-
-  const formatDate = (dateString) => {
-    try {
-      return dateString ? new Date(dateString).toLocaleDateString() : "N/A";
-    } catch {
-      return "N/A";
-    }
-  };
-
-  const now = new Date();
-  const ended = end_date ? new Date(end_date) < now : false;
-
-  if (ended) {
-    return null;
-  }
 
   const calculateDaysRemaining = (startDate, endDate) => {
     try {
@@ -134,7 +115,6 @@ const Card = ({
     }
   };
 
-  console.log("image prop:", image);
 
   return (
     <div className="card-hover">

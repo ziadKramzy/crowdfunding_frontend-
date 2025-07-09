@@ -22,8 +22,7 @@ export const CampaignForm = () => {
       })
       .then((res) => {
         setIsLoading(false);
-        console.log(image);
-        console.log("Backend response:", res.data.Campaign.image);
+       
         localStorage.setItem("newCampaignAdded", "true");
         navigate("/");
       })
@@ -44,6 +43,21 @@ export const CampaignForm = () => {
       .required("target amount is required")
       .positive("Amount must be positive")
       .typeError("Amount must be a number"),
+    end_date: Yup.date()
+      .required("End date is required")
+      .test(
+        'is-future-date',
+        'End date cannot be in the past',
+        function(value) {
+          if (!value) return false;
+          // Compare only the date part, not time
+          const today = new Date();
+          today.setHours(0,0,0,0);
+          const endDate = new Date(value);
+          endDate.setHours(0,0,0,0);
+          return endDate >= today;
+        }
+      ),
   });
   let formik = useFormik({
     initialValues: {

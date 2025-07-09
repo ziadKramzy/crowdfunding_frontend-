@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../apis/config";
 import Card from "../components/Card/Card";
 
-export const Home = () => {
+export const Allcampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,11 +31,11 @@ export const Home = () => {
 
   if (loading)
     return (
-      <div className="text-center mt-5 py-5">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+     <div className="d-flex justify-content-center align-items-center vh-100">
+  <div className="spinner-border text-info" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+</div>
     );
 
   if (error) return <div className="text-danger text-center mt-5">{error}</div>;
