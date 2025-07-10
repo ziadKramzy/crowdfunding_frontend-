@@ -2,6 +2,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axiosInstance from "../../apis/config";
 import "./Navbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,7 +58,9 @@ const Navbar = () => {
             style={{marginRight: 8}}
           />
           <button className="navbar-search-btn" type="submit">
-            <span role="img" aria-label="search">🔍</span>
+            <span role="img" aria-label="search">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </span>
           </button>
         </form>
         <div className={`custom-navbar-center${menuOpen ? " show" : ""}`}>
