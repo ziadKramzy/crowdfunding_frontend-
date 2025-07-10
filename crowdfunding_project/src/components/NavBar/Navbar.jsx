@@ -117,7 +117,36 @@ const Navbar = () => {
             </button>
           </form>
 
-          {/* Center Links */}
+          {/* Unified Mobile Menu */}
+          {menuOpen && (
+            <div className="mobile-navbar-menu">
+              <ul className="mobile-navbar-links">
+                <li><NavLink className="custom-navbar-link" to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
+                <li><NavLink className="custom-navbar-link" to="/campaigns" onClick={() => setMenuOpen(false)}>Campaigns</NavLink></li>
+                {userId && (
+                  <>
+                    <li><NavLink className="custom-navbar-link" to="/create-campaign" onClick={() => setMenuOpen(false)}>Create Campaign</NavLink></li>
+                    <li><NavLink className="custom-navbar-link" to="/mycampaigns" onClick={() => setMenuOpen(false)}>My Campaigns</NavLink></li>
+                  </>
+                )}
+                {!userId ? (
+                  <>
+                    <li><NavLink className="custom-navbar-link" to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink></li>
+                    <li><NavLink className="custom-navbar-link" to="/register" onClick={() => setMenuOpen(false)}>Register</NavLink></li>
+                  </>
+                ) : (
+                  <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
+                )}
+              </ul>
+              <div className="custom-navbar-social">
+                <i className="fab fa-facebook"></i>
+                <i className="fab fa-instagram"></i>
+                <i className="fab fa-twitter"></i>
+              </div>
+            </div>
+          )}
+
+          {/* Center Links (desktop only) */}
           <div className={`custom-navbar-center ${menuOpen ? "show" : ""}`}>
             <ul className="custom-navbar-nav">
               <li><NavLink className="custom-navbar-link" to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
@@ -142,12 +171,12 @@ const Navbar = () => {
               ) : (
                 <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
               )}
-              <div className="custom-navbar-social">
-                <i className="fab fa-facebook"></i>
-                <i className="fab fa-instagram"></i>
-                <i className="fab fa-twitter"></i>
-              </div>
             </ul>
+            <div className="custom-navbar-social">
+              <i className="fab fa-facebook"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-twitter"></i>
+            </div>
           </div>
         </div>
       </nav>
