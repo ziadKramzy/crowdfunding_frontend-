@@ -323,7 +323,6 @@
   }
   @media (max-width: 700px) {
     .hero_content {
-      background-color: #ffedde;
       width: 400px;
       padding: 20px;
       top: 50%;
