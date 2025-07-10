@@ -234,7 +234,7 @@
     background: #123f76;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5em 2em;
+    padding: 1em 0.5em;
     box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.1);
     border-radius: 0 0 2.25rem 2.25rem;
     display: none;
@@ -257,6 +257,9 @@
   .custom-navbar-container {
     flex-wrap: wrap;
     position: relative;
+        flex-direction: column;
+    align-items: stretch;
+    gap: 1em;
   }
 }
 
