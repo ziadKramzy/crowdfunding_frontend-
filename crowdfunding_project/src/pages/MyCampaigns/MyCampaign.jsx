@@ -1,6 +1,6 @@
 import {useEffect, useState } from "react"; // Add useContext import
-import axiosInstance from "../apis/config";
-import Card from "../components/Card/Card";
+import axiosInstance from "../../apis/config";
+import Card from "../../components/Card/Card";
 
 const MyCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -45,7 +45,7 @@ const MyCampaign = () => {
 
   return (
     <div className="mt-lg-4 ml-auto p-5">
-      <h2 className="mb-4 text-center">My Campaigns</h2>
+      <h2 className="mb-5 text-center pt-5" style={{color: "#123F76"}}>My Campaigns</h2>
       <div className="d-flex flex-wrap gap-4 justify-content-center">
         {userCampaigns.map((campaign) => {
 
