@@ -91,11 +91,11 @@ import "./CampaignDetails.css";
           </p>
           <p>
             <strong>Start Date:</strong>{" "}
-            {new Date(campaign.start_date).toLocaleDateString()}
+            {new Date(campaign.start_date).toISOString().slice(0, 10)}
           </p>
           <p>
             <strong>End Date:</strong>{" "}
-            {new Date(campaign.end_date).toLocaleDateString()}
+            {new Date(campaign.end_date).toISOString().slice(0, 10)}
           </p>
           {campaign.owner == userId && (
             <div style={{ display: "flex", gap: "1em", justifyContent: "center", marginTop: "2em" }}>
