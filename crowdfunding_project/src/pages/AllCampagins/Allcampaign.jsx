@@ -36,8 +36,8 @@ import Card from "../../components/Card/Card";
           url += "?";
           const urlParams = [];
           if (title) urlParams.push(`title=${encodeURIComponent(title)}`);
-          if (start) urlParams.push(`start=${encodeURIComponent(start)}`);
-          if (end) urlParams.push(`end=${encodeURIComponent(end)}`);
+          if (start) urlParams.push(`start_date=${encodeURIComponent(start)}`);
+          if (end) urlParams.push(`end_date=${encodeURIComponent(end)}`);
           url += urlParams.join('&');
         }
         const response = await axiosInstance.get(url);
