@@ -293,3 +293,73 @@
 .apply-btn:hover {
   background: #0d2c56;
 }
+
+@media (max-width: 600px) {
+  .custom-navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1em;
+    gap: 1em;
+  }
+
+  .navbar-header {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .custom-navbar-brand {
+    transform: none;
+    font-size: 1.6rem;
+  }
+
+  .navbar-search-form {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar-search-input {
+    width: 60%;
+    font-size: 0.95rem;
+  }
+
+  .custom-navbar-center,
+  .custom-navbar-right {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 1em 0.5em;
+    display: none;
+  }
+
+  .custom-navbar-center.show,
+  .custom-navbar-right.show {
+    display: flex;
+  }
+
+  .custom-navbar-nav {
+    flex-direction: column;
+    gap: 0.8em;
+    width: 100%;
+  }
+
+  .custom-navbar-link {
+    width: 100%;
+    text-align: left;
+    padding: 0.6em 1em;
+    font-size: 1rem;
+  }
+
+  .custom-navbar-social {
+    justify-content: flex-start;
+    padding-left: 1em;
+    width: 100%;
+    margin-top: 1em;
+  }
+
+  .burger-menu {
+    display: flex;
+    position: absolute;
+    top: 0.8em;
+    right: 1em;
+  }
+}

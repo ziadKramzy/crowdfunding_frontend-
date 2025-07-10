@@ -72,6 +72,15 @@ const Navbar = () => {
               CrowdFunding
             </NavLink>
           </div>
+              <button
+              className={`burger-menu ${menuOpen ? " open" : ""}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              <span className="burger-bar"></span>
+              <span className="burger-bar"></span>
+              <span className="burger-bar"></span>
+            </button>
           <form
             className="navbar-search-form"
             onSubmit={(e) => {
@@ -87,15 +96,6 @@ const Navbar = () => {
             }}
           >
             {/* Burger Menu Button for mobile */}
-            <button
-              className={`burger-menu${menuOpen ? " open" : ""}`}
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              <span className="burger-bar"></span>
-              <span className="burger-bar"></span>
-              <span className="burger-bar"></span>
-            </button>
 
             <input
               className="navbar-search-input"
@@ -119,7 +119,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faFilter} />
             </button>
           </form>
-          <div className={`custom-navbar-center${menuOpen ? " show" : ""}`}>
+          <div className={`custom-navbar-center ${menuOpen ? " show" : ""}`}>
             <ul className="custom-navbar-nav">
               <li>
                 <NavLink
@@ -163,7 +163,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <div className={`custom-navbar-right${menuOpen ? " show" : ""}`}>
+          <div className={`custom-navbar-right ${menuOpen ? " show" : ""}`}>
             <ul className="custom-navbar-nav">
               {userId == null && (
                 <>
