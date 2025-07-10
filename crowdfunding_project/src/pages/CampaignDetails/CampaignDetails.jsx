@@ -4,7 +4,7 @@ import axiosInstance from "../../apis/config";
 import "../CreateCampaign/CampaignForm.css";
 import "./CampaignDetails.css";
 
-export const CampaignDetails = () => {
+ const CampaignDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -91,11 +91,11 @@ export const CampaignDetails = () => {
           </p>
           <p>
             <strong>Start Date:</strong>{" "}
-            {new Date(campaign.start_date).toLocaleDateString()}
+            {new Date(campaign.start_date).toISOString().slice(0, 10)}
           </p>
           <p>
             <strong>End Date:</strong>{" "}
-            {new Date(campaign.end_date).toLocaleDateString()}
+            {new Date(campaign.end_date).toISOString().slice(0, 10)}
           </p>
           {campaign.owner == userId && (
             <div style={{ display: "flex", gap: "1em", justifyContent: "center", marginTop: "2em" }}>
@@ -120,3 +120,5 @@ export const CampaignDetails = () => {
     </div>
   );
 };
+
+export default CampaignDetails

@@ -1,16 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
-import { Home } from "../pages/Home/Home";
-import { CampaignDetails } from "../pages/CampaignDetails/CampaignDetails";
+import Home from "../pages/Home/Home.jsx";
+import CampaignDetails from "../pages/CampaignDetails/CampaignDetails.jsx";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import NotFoundPage from "../pages/NotFoundPage";
-import { CampaignForm } from "../pages/CreateCampaign/CampaignForm";
-import { CampaignEdit } from "../pages/EditCampaign/CampaignEdit";
-import MyCampaign from "../pages/MyCampaign";
+import CampaignForm from "../pages/CreateCampaign/CampaignForm.jsx";
+import CampaignEdit from "../pages/EditCampaign/CampaignEdit.jsx";
+import MyCampaign from "../pages/MyCampaigns/MyCampaign.jsx";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Allcampaign } from "../pages/Allcampaign";
 
+import Allcampaign from "../pages/AllCampagins/Allcampaign.jsx";
 const route = createBrowserRouter([
   {
     path: "/",

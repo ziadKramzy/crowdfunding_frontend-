@@ -6,7 +6,11 @@ export const ProtectedRoute = (props) => {
   if (localStorage.getItem('userToken') !== null) {
     return props.children;
   } else {
-    if (location.pathname === '/campaigns' || location.pathname === '/') {
+    if (
+      location.pathname === '/campaigns' ||
+      location.pathname === '/' ||
+      location.pathname.startsWith('/campaign-details/')
+    ) {
       return props.children;
     }
     return <Navigate to={'/login'} />;
