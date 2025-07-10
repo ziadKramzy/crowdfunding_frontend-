@@ -1,8 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import axiosInstance from "../../apis/config";
+import React, { useState, useRef } from "react";
 import "./Navbar.css";
-import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faFilter } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,65 +17,19 @@ const Navbar = () => {
 
   const handlesearch = (e) => {
     e.preventDefault();
-    const searchQuery = searchInputRef.current.value;
-    navigate(`/search?q=${searchQuery}`);
+    const query = searchInputRef.current.value.trim();
+    if (query) {
+      navigate(`/search?q=${query}`);
+    }
   };
 
-  function handleLogout() {
+  const handleLogout = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userToken");
     navigate("/login");
-  }
+  };
 
   return (
-    <nav className="custom-navbar">
-      <div className="custom-navbar-container">
-        <div className="custom-navbar-brand">CrowdFunding</div>
-        <div className="custom-navbar-center">
-          <ul className="custom-navbar-nav">
-            <li>
-              <NavLink className="custom-navbar-link" to="/">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="custom-navbar-link" to="/campaigns">
-                Campaigns
-              </NavLink>
-            </li>
-            {userId !== null && (
-              <>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/create-campaign">
-                    Create Campaign
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/mycampaigns">
-                    My Campaigns
-                  </NavLink>
-                </li>
-              </>
-            )}
-          </ul>
-        </div>
-        <div className="custom-navbar-right">
-          <ul className="custom-navbar-nav">
-            {userId == null && (
-              <>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/login">
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/register">
-                    Register
-                  </NavLink>
-                </li>
-              </>
-            )}
-            {userId !== null && (
     <>
       {showFilter && (
         <div className="filter-modal-overlay">
@@ -96,18 +48,12 @@ const Navbar = () => {
               onChange={(e) => setEndDate(e.target.value)}
             />
             <div className="filter-buttons">
-              <button
-                className="cancel-btn"
-                onClick={() => setShowFilter(false)}
-              >
-                Cancel
-              </button>
+              <button className="cancel-btn" onClick={() => setShowFilter(false)}>Cancel</button>
               <button
                 className="apply-btn"
                 onClick={() => {
                   const params = new URLSearchParams();
-                  if (searchQuery.trim())
-                    params.append("search", searchQuery.trim());
+                  if (searchQuery.trim()) params.append("search", searchQuery.trim());
                   if (startDate) params.append("start_date", startDate);
                   if (endDate) params.append("end_date", endDate);
                   navigate(`/campaigns?${params.toString()}`);
@@ -124,47 +70,42 @@ const Navbar = () => {
       <nav className="custom-navbar">
         <div className="custom-navbar-container">
           <div className="custom-navbar-brand">
-            <NavLink className="custom-navbar-brand" to="/">
-              CrowdFunding
-            </NavLink>
+            <NavLink className="custom-navbar-brand" to="/">CrowdFunding</NavLink>
           </div>
-              <button
-              className={`burger-menu ${menuOpen ? " open" : ""}`}
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              <span className="burger-bar"></span>
-              <span className="burger-bar"></span>
-              <span className="burger-bar"></span>
-            </button>
+
+          {/* Burger Menu Button */}
+          <button
+            className={`burger-menu ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="burger-bar"></span>
+            <span className="burger-bar"></span>
+            <span className="burger-bar"></span>
+          </button>
+
+          {/* Search Form */}
           <form
             className="navbar-search-form"
             onSubmit={(e) => {
               e.preventDefault();
               if (searchQuery.trim()) {
-                navigate(
-                  `/campaigns?search=${encodeURIComponent(searchQuery)}`
-                );
+                navigate(`/campaigns?search=${encodeURIComponent(searchQuery)}`);
               } else {
                 navigate("/campaigns");
               }
               setMenuOpen(false);
             }}
           >
-            {/* Burger Menu Button for mobile */}
-
             <input
               className="navbar-search-input"
               type="text"
               placeholder="Search campaigns..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ marginRight: 8 }}
             />
             <button className="navbar-search-btn" type="submit">
-              <span role="img" aria-label="search">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </span>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
             <button
               type="button"
@@ -175,107 +116,31 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faFilter} />
             </button>
           </form>
-          <div className={`custom-navbar-center ${menuOpen ? " show" : ""}`}>
+
+          {/* Center Links */}
+          <div className={`custom-navbar-center ${menuOpen ? "show" : ""}`}>
             <ul className="custom-navbar-nav">
-              <li>
-                <NavLink
-                  className="custom-navbar-link"
-                  to="/"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Home
-                </NavLink>
-              </li>
-            )}
-            {/* 🔍 Search Input */}
-            <li>
-              <form onSubmit={handlesearch}>
-                <input
-                  ref={searchInputRef}
-                  className="custom-navbar-search"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  autoComplete="on"
-                />
-              </form>
-            </li>
-            <div className="custom-navbar-social">
-              <i className="fab fa-facebook"></i>
-              <i className="fab fa-instagram"></i>
-              <i className="fab fa-twitter"></i>
-            </div>
-          </ul>
-              <li>
-                <NavLink
-                  className="custom-navbar-link"
-                  to="/campaigns"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Campaigns
-                </NavLink>
-              </li>
-              {userId !== null && (
+              <li><NavLink className="custom-navbar-link" to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
+              <li><NavLink className="custom-navbar-link" to="/campaigns" onClick={() => setMenuOpen(false)}>Campaigns</NavLink></li>
+              {userId && (
                 <>
-                  <li>
-                    <NavLink
-                      className="custom-navbar-link"
-                      to="/create-campaign"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Create Campaign
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="custom-navbar-link"
-                      to="/mycampaigns"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      My Campaigns
-                    </NavLink>
-                  </li>
+                  <li><NavLink className="custom-navbar-link" to="/create-campaign" onClick={() => setMenuOpen(false)}>Create Campaign</NavLink></li>
+                  <li><NavLink className="custom-navbar-link" to="/mycampaigns" onClick={() => setMenuOpen(false)}>My Campaigns</NavLink></li>
                 </>
               )}
             </ul>
           </div>
-          <div className={`custom-navbar-right ${menuOpen ? " show" : ""}`}>
+
+          {/* Right Side: Login/Register or Logout */}
+          <div className={`custom-navbar-right ${menuOpen ? "show" : ""}`}>
             <ul className="custom-navbar-nav">
-              {userId == null && (
+              {!userId ? (
                 <>
-                  <li>
-                    <NavLink
-                      className="custom-navbar-link"
-                      to="/login"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Login
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="custom-navbar-link"
-                      to="/register"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Register
-                    </NavLink>
-                  </li>
+                  <li><NavLink className="custom-navbar-link" to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink></li>
+                  <li><NavLink className="custom-navbar-link" to="/register" onClick={() => setMenuOpen(false)}>Register</NavLink></li>
                 </>
-              )}
-              {userId !== null && (
-                <li>
-                  <NavLink
-                    className="custom-navbar-link"
-                    to="/login"
-                    onClick={() => {
-                      handleLogout();
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Logout
-                  </NavLink>
-                </li>
+              ) : (
+                <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
               )}
               <div className="custom-navbar-social">
                 <i className="fab fa-facebook"></i>

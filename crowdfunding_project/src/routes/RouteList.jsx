@@ -9,7 +9,6 @@ import CampaignForm from "../pages/CreateCampaign/CampaignForm.jsx";
 import CampaignEdit from "../pages/EditCampaign/CampaignEdit.jsx";
 import MyCampaign from "../pages/MyCampaigns/MyCampaign.jsx";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { Allcampaign } from "../pages/Allcampaign";
 
 import Allcampaign from "../pages/AllCampagins/Allcampaign.jsx";
 const route = createBrowserRouter([

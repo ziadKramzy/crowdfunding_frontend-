@@ -88,7 +88,6 @@
 .burger-menu.open .burger-bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
->>>>>>> shimaa
 
 .custom-navbar {
   width: 100vw;
@@ -123,14 +122,12 @@
   transform: translateX(-6vw);
 }
 
-<<<<<<< HEAD
-=======
+
 .custom-navbar-brand:hover {
   scale: 1.1;
   transition: scale 0.2s;
 }
 
->>>>>>> shimaa
 .custom-navbar-links {
   display: flex;
   align-items: center;
@@ -166,10 +163,7 @@
 .custom-navbar-link.active {
   background: #fcfff2;
   color: #0000b3;
-<<<<<<< HEAD
-=======
   transition: 0.2s ease-in-out;
->>>>>>> shimaa
 }
 
 .custom-navbar-social {
@@ -195,7 +189,6 @@
   transform: translatex(4vw);
 }
 
-<<<<<<< HEAD
 .custom-navbar-search {
   padding: 0.4em 1em;
   border-radius: 2em;
@@ -218,9 +211,7 @@
 }
 
 /* Responsive */
-=======
 /* Responsive Nav */
->>>>>>> shimaa
 @media (max-width: 900px) {
   .burger-menu {
     display: flex;
@@ -249,155 +240,4 @@
     gap: 1em;
     width: 100%;
   }
-<<<<<<< HEAD
-=======
-  .custom-navbar-social {
-    margin-top: 1em;
-  }
-  .custom-navbar-container {
-    flex-wrap: wrap;
-    position: relative;
-        flex-direction: column;
-    align-items: stretch;
-    gap: 1em;
-  }
-}
-
-.filter-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.filter-modal {
-  background: #fff;
-  padding: 1.8rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  width: 90%;
-  max-width: 400px;
-}
-
-.filter-modal h4 {
-  color: #123f76;
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.filter-modal label {
-  font-weight: bold;
-  color: #123f76;
-}
-
-.filter-modal input[type="date"] {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.cancel-btn,
-.apply-btn {
-  background: #123f76;
-  color: #fff;
-  padding: 0.4rem 1.2rem;
-  border: none;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.cancel-btn:hover {
-  background: #999;
-}
-
-.apply-btn:hover {
-  background: #0d2c56;
-}
-
-@media (max-width: 600px) {
-  .custom-navbar-container {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1em;
-    gap: 1em;
-  }
-
-  .navbar-header {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .custom-navbar-brand {
-    transform: none;
-    font-size: 1.6rem;
-  }
-
-  .navbar-search-form {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .navbar-search-input {
-    width: 60%;
-    font-size: 0.95rem;
-  }
-
-  .custom-navbar-center,
-  .custom-navbar-right {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    padding: 1em 0.5em;
-    display: none;
-  }
-
-  .custom-navbar-center.show,
-  .custom-navbar-right.show {
-    display: flex;
-  }
-
-  .custom-navbar-nav {
-    flex-direction: column;
-    gap: 0.8em;
-    width: 100%;
-  }
-
-  .custom-navbar-link {
-    width: 100%;
-    text-align: left;
-    padding: 0.6em 1em;
-    font-size: 1rem;
-  }
-
-  .custom-navbar-social {
-    justify-content: flex-start;
-    padding-left: 1em;
-    width: 100%;
-    margin-top: 1em;
-  }
-
-  .burger-menu {
-    display: flex;
-    position: absolute;
-    top: 0.8em;
-    right: 1em;
-  }
->>>>>>> shimaa
 }
