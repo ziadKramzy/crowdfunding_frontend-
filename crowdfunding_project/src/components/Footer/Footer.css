@@ -1,0 +1,142 @@
+/* Footer Blue Theme (class-based selectors for React) */
+.footer-blue-theme {
+  background: #102e4a !important;
+  color: #e2eefd !important;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.footer-heading {
+  color:  #2196f3 !important;
+  font-weight: 700;
+}
+
+.footer-desc,
+.footer-links,
+.footer-links li {
+    margin-top: 10px;
+  color: white !important;
+  font-size: 1.1rem;
+}
+
+.footer-link {
+  color: white !important;
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: #fff !important;
+  text-shadow: 0 0 8px #2196f3, 0 0 2px #1565c0;
+  text-decoration: underline;
+}
+
+.footer-icon .fab {
+  color: white !important;
+  font-size: 1.4rem;
+  transition: color 0.2s, text-shadow 0.2s, transform 0.2s;
+}
+
+.footer-icon .fab:hover,
+.footer-icon .fab:focus {
+  color: #2196f3 !important;
+  text-shadow: 0 0 10px #2196f3, 0 0 2px #1565c0;
+  transform: scale(1.18);
+}
+
+.footer-divider {
+  border-top: 2px solid #2196f3 !important;
+  opacity: 0.2;
+}
+
+.footer-copyright {
+  color: #7bb1ea !important;
+}
+
+.footer-container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.footer-row {
+  margin-bottom: 0;
+}
+
+.footer-cols-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.footer-col {
+  flex: 1 1 25%;
+  min-width: 220px;
+  max-width: 25%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  .footer-col {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .footer-col {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+.footer-contact {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-contact-item {
+  color: #b3d1f7;
+  font-size: 1.05rem;
+  margin-bottom: 7px;
+}
+
+.footer-contact-address {
+  color: #7bb1ea;
+}
+
+
+.footer-social {
+  margin-top: 0.5rem;
+}
+
+.me-3 {
+  margin-right: 1rem !important;
+  text-shadow: 0 0 10px #2196f3, 0 0 2px #1565c0;
+  transform: scale(1.18);
+}
+
+footer hr.bg-secondary {
+  border-top: 2px solid #2196f3 !important;
+  opacity: 0.2;
+}
+
+footer .text-center {
+  color: #7bb1ea !important;
+}
+
+footer .fw-bold {
+  font-weight: 700 !important;
+}
+
+footer .me-3 {
+  margin-right: 1rem !important;
+}
+
+footer .container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+footer .row {
+  margin-bottom: 0;
+}

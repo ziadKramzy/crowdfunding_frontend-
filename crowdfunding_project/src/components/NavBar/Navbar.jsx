@@ -1,7 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axiosInstance from "../../apis/config";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
@@ -14,31 +19,67 @@ const Navbar = () => {
   return (
     <nav className="custom-navbar">
       <div className="custom-navbar-container">
-        <div className="custom-navbar-brand" >
-          CrowdFunding
+        <div className="custom-navbar-brand">
+          <NavLink className="custom-navbar-brand" to="/">
+            CrowdFunding
+          </NavLink>
         </div>
-        <div className="custom-navbar-center">
+        <form
+          className="navbar-search-form"
+          onSubmit={e => {
+            e.preventDefault();
+            if (searchQuery.trim()) {
+              navigate(`/campaigns?search=${encodeURIComponent(searchQuery)}`);
+            } else {
+              navigate('/campaigns');
+            }
+            setMenuOpen(false);
+          }}
+        >
+        {/* Burger Menu Button for mobile */}
+        <button
+          className={`burger-menu${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          <span className="burger-bar"></span>
+          <span className="burger-bar"></span>
+          <span className="burger-bar"></span>
+        </button>
+       
+          <input
+            className="navbar-search-input"
+            type="text"
+            placeholder="Search campaigns..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            style={{marginRight: 8}}
+          />
+          <button className="navbar-search-btn" type="submit">
+            <span role="img" aria-label="search">🔍</span>
+          </button>
+        </form>
+        <div className={`custom-navbar-center${menuOpen ? " show" : ""}`}>
           <ul className="custom-navbar-nav">
             <li>
-                  <NavLink className="custom-navbar-link" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="custom-navbar-link" to="/campaigns">
-                    Campaigns
-                  </NavLink>
-                </li>
+              <NavLink className="custom-navbar-link" to="/" onClick={() => setMenuOpen(false)}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="custom-navbar-link" to="/campaigns" onClick={() => setMenuOpen(false)}>
+                Campaigns
+              </NavLink>
+            </li>
             {userId !== null && (
               <>
-                
                 <li>
-                  <NavLink className="custom-navbar-link" to="/create-campaign">
+                  <NavLink className="custom-navbar-link" to="/create-campaign" onClick={() => setMenuOpen(false)}>
                     Create Campaign
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="custom-navbar-link" to="/mycampaigns">
+                  <NavLink className="custom-navbar-link" to="/mycampaigns" onClick={() => setMenuOpen(false)}>
                     My Campaigns
                   </NavLink>
                 </li>
@@ -46,17 +87,17 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className="custom-navbar-right">
+        <div className={`custom-navbar-right${menuOpen ? " show" : ""}`}>
           <ul className="custom-navbar-nav">
             {userId == null && (
               <>
                 <li>
-                  <NavLink className="custom-navbar-link" to="/login">
+                  <NavLink className="custom-navbar-link" to="/login" onClick={() => setMenuOpen(false)}>
                     Login
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="custom-navbar-link" to="/register">
+                  <NavLink className="custom-navbar-link" to="/register" onClick={() => setMenuOpen(false)}>
                     Register
                   </NavLink>
                 </li>
@@ -67,19 +108,18 @@ const Navbar = () => {
                 <NavLink
                   className="custom-navbar-link"
                   to="/login"
-                  onClick={handleLogout}
+                  onClick={() => { handleLogout(); setMenuOpen(false); }}
                 >
                   Logout
                 </NavLink>
               </li>
             )}
-              <div className="custom-navbar-social">
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-twitter"></i>
-          </div>
+            <div className="custom-navbar-social">
+              <i className="fab fa-facebook"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-twitter"></i>
+            </div>
           </ul>
-        
         </div>
       </div>
     </nav>

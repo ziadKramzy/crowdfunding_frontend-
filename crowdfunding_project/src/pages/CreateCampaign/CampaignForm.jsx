@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../apis/config";
 import "./CampaignForm.css";
-export const CampaignForm = () => {
+ const CampaignForm = () => {
   const [isloading, setIsLoading] = useState(false);
   const [image, setImage] = useState(null);
   let navigate = useNavigate();
@@ -196,3 +196,5 @@ export const CampaignForm = () => {
     </div>
   );
 };
+
+ export default CampaignForm

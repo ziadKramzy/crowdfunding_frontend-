@@ -4,7 +4,7 @@ import axiosInstance from "../../apis/config";
 import "../CreateCampaign/CampaignForm.css";
 import "./CampaignDetails.css";
 
-export const CampaignDetails = () => {
+ const CampaignDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -120,3 +120,5 @@ export const CampaignDetails = () => {
     </div>
   );
 };
+
+export default CampaignDetails

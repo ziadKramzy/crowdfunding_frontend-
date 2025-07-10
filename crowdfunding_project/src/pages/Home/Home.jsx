@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
 import "./Home.css";
-import image1 from '../../assets/Images/pexels-singkham.jpg'
-import image2 from '../../assets/Images/istockphoto-1643578236-1024x1024.jpg'
 
-export const Home = () => {
+import image2 from '../../assets/Images/istockphoto-1643578236-1024x1024.jpg'
+import image1 from '../../assets/Images/pexels--section-img.jpg'
+
+ const Home = () => {
   let navigate = useNavigate();
   const [campaigns, setCampaigns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -141,6 +142,25 @@ export const Home = () => {
           </div>
         )}
       </div>
+
+      {/* My Campaigns Section */}
+      <div className="home-my-campaigns-card">
+  <div className="home-my-campaigns-img-wrapper">
+    <img
+      src={image1}
+      alt="My Campaigns Illustration"
+      className="home-my-campaigns-img"
+    />
+  </div>
+  <div className="home-my-campaigns-content">
+    <h3 className="home-my-campaigns-title mb-2">Check Your Campaigns</h3>
+    <p className="home-my-campaigns-desc mb-3">
+      See all the campaigns you have created, track their progress, and manage them easily.
+    </p>
+    <a href="/mycampaigns" className="home-my-campaigns-btn">Go to My Campaigns</a>
+  </div>
+</div>
     </>
   );
 };
+export default Home

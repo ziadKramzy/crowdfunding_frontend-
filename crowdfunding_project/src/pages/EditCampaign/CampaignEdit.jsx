@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../apis/config";
 import "../CreateCampaign/CampaignForm.css";
 
-export const CampaignEdit = () => {
+ const CampaignEdit = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -187,3 +187,6 @@ export const CampaignEdit = () => {
     </div>
   );
 };
+
+
+export default CampaignEdit;
