@@ -138,11 +138,6 @@ const Navbar = () => {
                   <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
                 )}
               </ul>
-              <div className="custom-navbar-social">
-                <i className="fab fa-facebook"></i>
-                <i className="fab fa-instagram"></i>
-                <i className="fab fa-twitter"></i>
-              </div>
             </div>
           )}
 
@@ -162,22 +157,24 @@ const Navbar = () => {
 
           {/* Right Side: Login/Register or Logout */}
           <div className={`custom-navbar-right ${menuOpen ? "show" : ""}`}>
-            <ul className="custom-navbar-nav">
-              {!userId ? (
-                <>
-                  <li><NavLink className="custom-navbar-link" to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink></li>
-                  <li><NavLink className="custom-navbar-link" to="/register" onClick={() => setMenuOpen(false)}>Register</NavLink></li>
-                </>
-              ) : (
-                <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
-              )}
-            </ul>
-            <div className="custom-navbar-social">
-              <i className="fab fa-facebook"></i>
-              <i className="fab fa-instagram"></i>
-              <i className="fab fa-twitter"></i>
-            </div>
-          </div>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5em' }}>
+    <ul className="custom-navbar-nav" style={{ marginBottom: 0 }}>
+      {!userId ? (
+        <>
+          <li><NavLink className="custom-navbar-link" to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink></li>
+          <li><NavLink className="custom-navbar-link" to="/register" onClick={() => setMenuOpen(false)}>Register</NavLink></li>
+        </>
+      ) : (
+        <li><NavLink className="custom-navbar-link" to="/login" onClick={() => { handleLogout(); setMenuOpen(false); }}>Logout</NavLink></li>
+      )}
+    </ul>
+    <div className="custom-navbar-social">
+      <i className="fab fa-facebook"></i>
+      <i className="fab fa-instagram"></i>
+      <i className="fab fa-twitter"></i>
+    </div>
+  </div>
+</div>
         </div>
       </nav>
     </>
