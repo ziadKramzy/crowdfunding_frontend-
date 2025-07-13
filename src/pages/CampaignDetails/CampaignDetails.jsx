@@ -70,7 +70,7 @@ import "./CampaignDetails.css";
     );
 
   return (
-    <div className="campaignform-bg">
+    <div className="campaignform-bg pt-lg-5 mt-5">
       <div className="campaignform-card">
         <div className="campaignform-header">
           <h2 className="campaignform-title">{campaign.title}</h2>

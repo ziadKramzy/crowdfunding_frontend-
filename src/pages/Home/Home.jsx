@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
 import "./Home.css";
@@ -9,6 +9,7 @@ import image1 from '../../assets/Images/pexels--section-img.jpg'
 
  const Home = () => {
   let navigate = useNavigate();
+  const location = useLocation();
   const [campaigns, setCampaigns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const campaignsPerPage = 3;
@@ -24,7 +25,22 @@ import image1 from '../../assets/Images/pexels--section-img.jpg'
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axiosInstance.get("projects/");
+        // Parse query params
+        const params = new URLSearchParams(location.search);
+        const title = params.get("search") || "";
+        const start = params.get("start_date") || "";
+        const end = params.get("end_date") || "";
+
+        let url = "projects/";
+        const queryArr = [];
+        if (title) queryArr.push(`title=${encodeURIComponent(title)}`);
+        if (start) queryArr.push(`start_date=${encodeURIComponent(start)}`);
+        if (end) queryArr.push(`end_date=${encodeURIComponent(end)}`);
+        if (queryArr.length > 0) {
+          url += `search?${queryArr.join("&")}`;
+        }
+
+        const response = await axiosInstance.get(url);
         setCampaigns(response.data);
       } catch (err) {
         setError("Failed to load campaigns.");
@@ -39,7 +55,7 @@ import image1 from '../../assets/Images/pexels--section-img.jpg'
       fetchCampaigns();
       localStorage.removeItem("newCampaignAdded");
     }
-  }, []);
+  }, [location.search]);
 
 
   if (loading)

@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useRef } from "react";
 import "./Navbar.css";
+import "./NavbarFilterModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faFilter } from "@fortawesome/free-solid-svg-icons";
 
@@ -32,25 +33,27 @@ const Navbar = () => {
   return (
     <>
       {showFilter && (
-        <div className="filter-modal-overlay">
-          <div className="filter-modal">
+        <div className="navbar-filter-modal-overlay">
+          <div className="navbar-filter-modal">
             <h4>Filter by Date</h4>
-            <label>Start Date:</label>
+            <label className="navbar-filter-label">Start Date:</label>
             <input
               type="date"
+              className="navbar-filter-input"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
-            <label>End Date:</label>
+            <label className="navbar-filter-label">End Date:</label>
             <input
               type="date"
+              className="navbar-filter-input"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
-            <div className="filter-buttons">
-              <button className="cancel-btn" onClick={() => setShowFilter(false)}>Cancel</button>
+            <div className="navbar-filter-buttons">
+              <button className="navbar-filter-cancel-btn" onClick={() => setShowFilter(false)}>Cancel</button>
               <button
-                className="apply-btn"
+                className="navbar-filter-apply-btn"
                 onClick={() => {
                   const params = new URLSearchParams();
                   if (searchQuery.trim()) params.append("search", searchQuery.trim());
