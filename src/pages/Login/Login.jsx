@@ -61,7 +61,7 @@ const Login = () => {
           className="py-5 px-4 my-5   border-dark rounded-3 shadow-lg"
           style={{ maxWidth: "700px", width: "100%" }}
         >
-          <h2 className="text-info  text-center">Login Now</h2>
+          <h2 className="text-primary  text-center">Login Now</h2>
 
           <form className="w-100 px-5 py-5" onSubmit={formik.handleSubmit}>
             <div className="form-floating mb-3 ">
@@ -102,7 +102,7 @@ const Login = () => {
             ) : null}
 
             <div>
-              <button type="submit" className="btn btn-info btn-lg text-white ">
+              <button type="submit" className="btn btn-primary btn-lg text-white ">
                 {isloading ? (
                   <i className="fas fa-spinner fa-spin"></i>
                 ) : (
@@ -116,7 +116,7 @@ const Login = () => {
                 className="nav-link d-inline fw-bold text-info"
                 to="/register"
               >
-                <span> Register</span>
+                <span className="text-primary"> Register</span>
               </Link>
             </p>
           </form>

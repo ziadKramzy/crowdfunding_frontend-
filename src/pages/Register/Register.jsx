@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axiosInstance from '../../apis/config'
-import './Register.css' 
 const Register = () => {
   let navigate = useNavigate()
 
@@ -68,7 +67,7 @@ const Register = () => {
         <div className="w-100" style={{ maxWidth: '700px' }}>
           <div className="card shadow-lg ">
             <div className="card-body p-5">
-              <h2 className="text-info text-center mb-4">Register Now</h2>
+              <h2 className="text-primary text-center mb-4">Register Now</h2>
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-floating mb-3">
                   <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.first_name} type="text" name='first_name' className="form-control" id="floatingName" placeholder="ex.shimaa" />
@@ -107,7 +106,7 @@ const Register = () => {
                 {formik.errors.phone_number && formik.touched.phone_number && <div className="alert alert-danger">{formik.errors.phone_number}</div>}
 
                 <div>
-                  <button type="submit" className="btn btn-info btn-lg w-100 text-white">
+                  <button type="submit" className="btn btn-primary btn-lg w-100 text-white">
                     {isloading ? <i className='fas fa-spinner fa-spin'></i> : 'Register'}
                   </button>
                 </div>
