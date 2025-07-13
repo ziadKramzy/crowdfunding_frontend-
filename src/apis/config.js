@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL: 'https://crowdfunding-backend-iti.fly.dev/api/',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
         const refreshToken = localStorage.getItem('refresh_token');
 
         const res = await axios.post(
-          'http://127.0.0.1:8000/api/token/refresh/',
+          'https://crowdfunding-backend-iti.fly.dev/api/token/refresh/',
           { refresh: refreshToken }, 
           {
             headers: {
