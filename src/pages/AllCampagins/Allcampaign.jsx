@@ -1,49 +1,46 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
 
+const fetchCampaigns = async ({ queryKey }) => {
+  const [_key, searchParams] = queryKey;
+  let url = "projects/search";
+  const urlParams = [];
+  if (searchParams.title) urlParams.push(`title=${encodeURIComponent(searchParams.title)}`);
+  if (searchParams.start) urlParams.push(`start_date=${encodeURIComponent(searchParams.start)}`);
+  if (searchParams.end) urlParams.push(`end_date=${encodeURIComponent(searchParams.end)}`);
+  if (urlParams.length) url += "?" + urlParams.join("&");
+  const response = await axiosInstance.get(url);
+  return response.data;
+};
+
 const Allcampaign = () => {
   const location = useLocation();
-  const [campaigns, setCampaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const params = new URLSearchParams(location.search);
+  const searchParams = {
+    title: params.get("search") || "",
+    start: params.get("start_date") || "",
+    end: params.get("end_date") || "",
+  };
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const title = params.get("search") || "";
-    const start = params.get("start_date") || "";
-    const end = params.get("end_date") || "";
+  const {
+    data: campaigns = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["campaigns", searchParams],
+    queryFn: fetchCampaigns,
+    staleTime: 10 * 60 * 1000, // 5 minutes
+  });
 
-    const fetchCampaigns = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        let url = "projects/search";
-        if (title || start || end) {
-          url += "?";
-          const urlParams = [];
-          if (title) urlParams.push(`title=${encodeURIComponent(title)}`);
-          if (start) urlParams.push(`start_date=${encodeURIComponent(start)}`);
-          if (end) urlParams.push(`end_date=${encodeURIComponent(end)}`);
-          url += urlParams.join("&");
-        }
-        const response = await axiosInstance.get(url);
-        setCampaigns(response.data);
-      } catch (err) {
-        setError("Failed to load campaigns.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCampaigns();
-    const newCampaign = localStorage.getItem("newCampaignAdded");
-    if (newCampaign === "true") {
-      fetchCampaigns();
-      localStorage.removeItem("newCampaignAdded");
-    }
-  }, [location.search]);
+  // Refetch if a new campaign was added (preserving your logic)
+  if (localStorage.getItem("newCampaignAdded") === "true") {
+    refetch();
+    localStorage.removeItem("newCampaignAdded");
+  }
 
   return (
     <div className="container mt-lg-5 pt-lg-5">
@@ -51,14 +48,14 @@ const Allcampaign = () => {
         Campaigns
       </h1>
 
-      {loading ? (
+      {isLoading ? (
         <div className="d-flex justify-content-center align-items-center vh-100">
           <div className="spinner-border text-info" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
-      ) : error ? (
-        <div className="text-danger text-center mt-5">{error}</div>
+      ) : isError ? (
+        <div className="text-danger text-center mt-5">{error?.message || "Failed to load campaigns."}</div>
       ) : (
         <div className="row pt-lg-5 ">
           {campaigns.length === 0 ? (
