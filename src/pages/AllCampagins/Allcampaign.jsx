@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../apis/config";
 import Card from "../../components/Card/Card";
+import "./Allcampagin.css";
 
 const fetchCampaigns = async ({ queryKey }) => {
   const [_key, searchParams] = queryKey;
@@ -29,8 +30,7 @@ const Allcampaign = () => {
     isLoading,
     isError,
     error,
-    refetch,
-  } = useQuery({
+    refetch,} = useQuery({
     queryKey: ["campaigns", searchParams],
     queryFn: fetchCampaigns,
     staleTime: 10 * 60 * 1000, // 5 minutes
@@ -43,10 +43,12 @@ const Allcampaign = () => {
   }
 
   return (
-    <div className="container mt-lg-5 pt-lg-5">
-      <h1 className="text-center pe-5 pt-5" style={{ color: "#123F76" }}>
-        Campaigns
-      </h1>
+    <div className="allCamp container">
+      <div className="allCamp-header">
+        <h1 className="allCamp-title text-center" style={{ color: "#123F76" }}>
+          Campaigns
+        </h1>
+      </div>
 
       {isLoading ? (
         <div className="d-flex justify-content-center align-items-center vh-100">
@@ -57,12 +59,12 @@ const Allcampaign = () => {
       ) : isError ? (
         <div className="text-danger text-center mt-5">{error?.message || "Failed to load campaigns."}</div>
       ) : (
-        <div className="row pt-lg-5 ">
+        <div className="row g-4">
           {campaigns.length === 0 ? (
             <div className="text-center text-muted">No campaigns found.</div>
           ) : (
             campaigns.map((campaign) => (
-              <div className="col-md-4 mb-4" key={campaign.id}>
+              <div className="col-12 col-sm-6 col-lg-4" key={campaign.id}>
                 <Card {...campaign} />
               </div>
             ))

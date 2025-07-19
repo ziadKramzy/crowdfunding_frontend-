@@ -276,6 +276,15 @@ h1, h2, h3, h4, h5 {
   color: #1976d2;
   background: #e3f0ff;
 }
+@media (max-width: 435px) {
+  .view-btn{
+    transform: translateY(20px);
+
+  }
+  .card-hover__link svg {
+    display: none;
+  }
+}
 
 /* Donate Modal Styles */
 .donate-modal-overlay {

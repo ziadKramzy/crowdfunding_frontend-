@@ -1,0 +1,131 @@
+/* Responsive and smooth styles for AllCampaigns */
+.allCamp {
+  padding-top: 80px;
+  padding-bottom: 40px;
+  transition: padding 0.3s cubic-bezier(.4,0,.2,1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.allCamp-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+  padding: 0 10px;
+}
+
+.allCamp-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  transition: font-size 0.3s cubic-bezier(.4,0,.2,1), padding-bottom 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.allCamp .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -12px;
+  margin-right: -12px;
+  transition: margin 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.allCamp .col-12 {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 24px;
+  transition: padding 0.3s cubic-bezier(.4,0,.2,1), margin 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* Large screens (desktops) */
+@media (max-width: 1200px) {
+  .allCamp {
+    padding-top: 120px;
+  }
+  .allCamp-title {
+    font-size: 2.2rem;
+  }
+
+  
+
+}
+
+
+/* Medium screens (tablets) */
+@media (max-width: 1025px) {
+  .allCamp {
+    padding-top: 120px;
+  
+  }
+  .allCamp-title {
+    font-size: 1.7rem;
+    padding-bottom: 12px;
+  }
+  .allCamp .col-12,
+  .allCamp .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+}
+
+/* Small screens (large phones) */
+@media (max-width: 768px) {
+  .allCamp {
+    padding-top: 260;
+    padding-bottom: 10px;
+  }
+  .allCamp-title {
+    font-size: 1.3rem;
+    padding-bottom: 8px;
+  }
+  .allCamp .col-12,
+  .allCamp .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .allCamp .row {
+    margin-left: 23%;
+    margin-right: 0;
+  }
+}
+
+/* Extra small screens (phones) */
+@media (max-width: 600px) {
+  .allCamp {
+    padding-top: 250px;
+    padding-bottom: 2px;
+  }
+  .allCamp-header {
+    padding: 0 2px;
+  }
+  .allCamp-title {
+    font-size: 1.5rem;
+    padding-bottom: 4px;
+  }
+  .allCamp .row {
+    margin-left: 14vw;
+    margin-right: 0;
+  }
+  .allCamp .col-12 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 16px;
+  }
+}
+
+/* Ultra small screens */
+@media (max-width: 525px) {
+  .allCamp {
+    padding-top: 200px;
+  }
+  .allCamp-title {
+    font-size: 1.2rem;
+  }
+  .allCamp .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
